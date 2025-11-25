@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     products: Product;
+    'knowledge-base': KnowledgeBase;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    'knowledge-base': KnowledgeBaseSelect<false> | KnowledgeBaseSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -212,6 +214,21 @@ export interface Product {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "knowledge-base".
+ */
+export interface KnowledgeBase {
+  id: number;
+  title: string;
+  /**
+   * Tento text bude použitý AI agentom na odpovedanie.
+   */
+  content: string;
+  tags?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -245,6 +262,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'knowledge-base';
+        value: number | KnowledgeBase;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -357,6 +378,17 @@ export interface ProductsSelect<T extends boolean = true> {
         feature?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "knowledge-base_select".
+ */
+export interface KnowledgeBaseSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  tags?: T;
   updatedAt?: T;
   createdAt?: T;
 }

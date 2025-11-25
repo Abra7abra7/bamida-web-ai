@@ -1,36 +1,189 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bamida.sk - Modern Industrial E-commerce Platform
 
-## Getting Started
+Moderná webová aplikácia pre Bamida.sk s AI chatbotom, 3D konfigurátorom a headless CMS.
 
-First, run the development server:
+## 🚀 Technológie
 
-```bash
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **Jazyk**: TypeScript
+- **Styling**: Tailwind CSS 4, Shadcn/UI
+- **CMS**: Payload CMS 3 (Headless)
+- **Databáza**: PostgreSQL (Neon DB)
+- **AI**: OpenAI GPT-4o, Vercel AI SDK
+- **3D**: Three.js, React Three Fiber
+- **Lokalizácia**: next-intl (SK, EN, DE)
+
+## 📋 Predpoklady
+
+- Node.js 20+
+- npm alebo yarn
+- Neon DB účet (alebo iný PostgreSQL provider)
+- OpenAI API kľúč
+
+## 🔧 Inštalácia
+
+1. **Klonuj repozitár**
+\`\`\`bash
+git clone https://github.com/Abra7abra7/bamida-web-ai.git
+cd bamida-web-ai
+\`\`\`
+
+2. **Nainštaluj závislosti**
+\`\`\`bash
+npm install
+\`\`\`
+
+3. **Nastav environment variables**
+\`\`\`bash
+cp .env.example .env
+\`\`\`
+
+Uprav \`.env\`:
+\`\`\`env
+DATABASE_URI=postgresql://user:password@host/database
+PAYLOAD_SECRET=your-secret-key-min-32-chars
+OPENAI_API_KEY=sk-...
+\`\`\`
+
+4. **Spusti development server**
+\`\`\`bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplikácia beží na \`http://localhost:3000\`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Štruktúra projektu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\`\`\`
+bamida-web-ai/
+├── app/
+│   ├── [locale]/          # Lokalizované stránky (SK, EN, DE)
+│   │   ├── page.tsx       # Homepage
+│   │   ├── products/      # Produktový katalóg
+│   │   ├── configurator/  # 3D konfigurátor
+│   │   └── ...
+│   ├── (payload)/         # Payload CMS admin
+│   │   ├── admin/         # Admin panel
+│   │   └── collections/   # CMS kolekcie
+│   └── api/
+│       └── chat/          # AI chatbot endpoint
+├── components/
+│   ├── ai/                # AI komponenty (ChatInterface)
+│   ├── configurator/      # 3D konfigurátor
+│   ├── layout/            # Header, Footer
+│   └── ui/                # Shadcn/UI komponenty
+├── lib/
+│   ├── rag.ts             # RAG implementácia
+│   └── utils.ts           # Utility funkcie
+├── messages/              # Preklady (SK, EN, DE)
+└── public/                # Statické súbory
 
-## Learn More
+\`\`\`
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Hlavné funkcie
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. AI Chatbot (Bamida Expert)
+- **Technológia**: OpenAI GPT-4o + RAG
+- **Kontext**: Knowledge Base + Produktový katalóg
+- **Jazyk**: Slovenčina
+- **Umiestnenie**: Floating button na každej stránke
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Knowledge Base (Firemné vedomosti)
+- **Admin panel**: \`/admin\` → Knowledge Bases
+- **Funkcia**: Majiteľ môže pridávať informácie o firme
+- **Použitie**: AI chatbot automaticky používa tieto dáta
 
-## Deploy on Vercel
+### 3. 3D Konfigurátor
+- **Produkt**: Pergoly
+- **Funkcie**: Zmena rozmerov, farby, materiálu
+- **Technológia**: Three.js + React Three Fiber
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Produktový katalóg
+- **CMS**: Payload CMS (headless)
+- **Kategórie**: Priemysel, Tienenie, Branding, Materiály
+- **Funkcie**: Dynamické stránky, filtrovanie, vyhľadávanie
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔐 Správa obsahu
+
+### Prístup do admin panelu
+1. Choď na \`https://your-domain.com/admin\`
+2. Prihlás sa (prvý používateľ sa vytvorí pri prvom spustení)
+
+### Pridanie vedomostí do AI
+1. Admin panel → **Knowledge Bases**
+2. **Create New**
+3. **Title**: Názov (napr. "Otváracie hodiny")
+4. **Content**: Text, ktorý AI použije na odpoveď
+5. **Save**
+
+### Pridanie produktu
+1. Admin panel → **Products**
+2. **Create New**
+3. Vyplň polia (názov, kategória, cena, obrázky...)
+4. **Save**
+
+## 🚀 Deployment (Vercel)
+
+### 1. Priprav databázu
+- Vytvor Neon DB projekt na [neon.tech](https://neon.tech)
+- Skopíruj Connection String
+
+### 2. Deploy na Vercel
+\`\`\`bash
+vercel
+\`\`\`
+
+### 3. Nastav Environment Variables
+V Vercel dashboarde:
+- \`DATABASE_URI\` = tvoj Neon DB connection string
+- \`PAYLOAD_SECRET\` = náhodný 32+ znakový reťazec
+- \`OPENAI_API_KEY\` = tvoj OpenAI kľúč
+
+### 4. Redeploy
+\`\`\`bash
+vercel --prod
+\`\`\`
+
+## 📚 Dokumentácia
+
+Detailná technická dokumentácia: [TECHNICAL.md](./TECHNICAL.md)
+
+## 🛠️ Development
+
+### Spustenie dev servera
+\`\`\`bash
+npm run dev
+\`\`\`
+
+### Build pre produkciu
+\`\`\`bash
+npm run build
+\`\`\`
+
+### Lint
+\`\`\`bash
+npm run lint
+\`\`\`
+
+### Generovanie TypeScript typov
+\`\`\`bash
+npm run generate:types
+\`\`\`
+
+## 🌍 Lokalizácia
+
+Podporované jazyky:
+- 🇸🇰 Slovenčina (predvolený)
+- 🇬🇧 Angličtina
+- 🇩🇪 Nemčina
+
+Preklady: \`messages/sk.json\`, \`messages/en.json\`, \`messages/de.json\`
+
+## 📝 Licencia
+
+Proprietary - Bamida.sk
+
+## 👥 Autor
+
+Vytvoril: Marian Abrahám
+Projekt: Bamida.sk Modernization

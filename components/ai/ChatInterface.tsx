@@ -57,7 +57,7 @@ export function ChatInterface() {
                 setMessages((prev) => {
                     const newMessages = [...prev]
                     const lastMsgIndex = newMessages.length - 1
-                    let lastMsg = { ...newMessages[lastMsgIndex] }
+                    const lastMsg = { ...newMessages[lastMsgIndex] }
 
                     if (lastMsg.role === 'assistant') {
                         lastMsg.content += text

@@ -11,16 +11,21 @@ import { Badge } from '@/components/ui/badge'
 export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
-    const payload = await getPayload({ config: configPromise })
-    const products = await payload.find({
-        collection: 'products',
-        limit: 100,
-    })
+    try {
+        const payload = await getPayload({ config: configPromise })
+        const products = await payload.find({
+            collection: 'products',
+            limit: 100,
+        })
 
-    return products.docs.map((product) => ({
-        category: product.category,
-        slug: product.slug,
-    }))
+        return products.docs.map((product) => ({
+            category: product.category,
+            slug: product.slug,
+        }))
+    } catch (error) {
+        console.warn('Database not available for static generation, skipping...', error)
+        return []
+    }
 }
 
 type Props = {

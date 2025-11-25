@@ -1,42 +1,44 @@
-import { Pinecone } from '@pinecone-database/pinecone'
-import { embed } from 'ai'
-import { openai } from '@ai-sdk/openai'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
 
-const indexName = process.env.PINECONE_INDEX || 'bamida-index'
-
-export async function getContext(query: string) {
-    const apiKey = process.env.PINECONE_API_KEY
-    if (!apiKey) {
-        console.warn('PINECONE_API_KEY is not set. Returning empty context.')
-        return ''
-    }
-
+export async function getContext(query: string): Promise<string> {
     try {
-        const pinecone = new Pinecone({
-            apiKey,
+        const payload = await getPayload({ config: configPromise })
+
+        // 1. Fetch Knowledge Base entries
+        // In a real production app with many entries, we would use vector search here.
+        // For now, we fetch all active knowledge base entries (assuming < 100 items).
+        const knowledgeBase = await payload.find({
+            collection: 'knowledge-base',
+            limit: 50,
         })
 
-        const { embedding } = await embed({
-            model: openai.embedding('text-embedding-3-small'),
-            value: query,
-        })
-
-        const index = pinecone.index(indexName)
-
-        const queryResponse = await index.query({
-            vector: embedding,
-            topK: 3,
-            includeMetadata: true,
-        })
-
-        const context = queryResponse.matches
-            .map((match) => (match.metadata as any)?.text)
-            .filter(Boolean)
+        const kbContext = knowledgeBase.docs
+            .map((doc: any) => `[${doc.title}]: ${doc.content}`)
             .join('\n\n')
 
-        return context
+        // 2. Fetch Products (basic search by name only)
+        const products = await payload.find({
+            collection: 'products',
+            where: {
+                name: { like: query },
+            },
+            limit: 3,
+        })
+
+        const productContext = products.docs
+            .map((doc: any) => `Product: ${doc.name}\nPrice: ${doc.price} EUR\nCategory: ${doc.category}`)
+            .join('\n\n')
+
+        return `
+Knowledge Base:
+${kbContext}
+
+Relevant Products:
+${productContext}
+        `.trim()
     } catch (error) {
-        console.error('Error querying Pinecone:', error)
+        console.error('Error fetching context:', error)
         return ''
     }
 }
