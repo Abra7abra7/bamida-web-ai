@@ -1,0 +1,19 @@
+{
+    "HomePage": {
+        "title": "Bamida - Industrietextilien und Beschattung",
+        "heroTitle": "Innovation bei Industrietextilien",
+        "heroSubtitle": "Qualität, auf die Sie sich verlassen können. Seit 1995.",
+        "cta": "Produkte ansehen"
+    },
+    "Navigation": {
+        "home": "Startseite",
+        "products": "Produkte",
+        "about": "Über uns",
+        "contact": "Kontakt"
+    },
+    "Products": {
+        "title": "Unsere Produkte",
+        "filter": "Filter",
+        "all": "Alle"
+    }
+}

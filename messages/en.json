@@ -1,0 +1,19 @@
+{
+    "HomePage": {
+        "title": "Bamida - Industrial Textiles and Shading",
+        "heroTitle": "Innovation in Industrial Textiles",
+        "heroSubtitle": "Quality you can rely on. Since 1995.",
+        "cta": "View Products"
+    },
+    "Navigation": {
+        "home": "Home",
+        "products": "Products",
+        "about": "About Us",
+        "contact": "Contact"
+    },
+    "Products": {
+        "title": "Our Products",
+        "filter": "Filter",
+        "all": "All"
+    }
+}

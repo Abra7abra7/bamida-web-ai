@@ -1,0 +1,19 @@
+{
+    "HomePage": {
+        "title": "Bamida - Priemyselné textílie a tienenie",
+        "heroTitle": "Inovácie v priemyselných textíliách",
+        "heroSubtitle": "Kvalita, na ktorú sa môžete spoľahnúť. Od roku 1995.",
+        "cta": "Zobraziť produkty"
+    },
+    "Navigation": {
+        "home": "Domov",
+        "products": "Produkty",
+        "about": "O nás",
+        "contact": "Kontakt"
+    },
+    "Products": {
+        "title": "Naše produkty",
+        "filter": "Filter",
+        "all": "Všetky"
+    }
+}
