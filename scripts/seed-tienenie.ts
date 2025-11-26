@@ -99,6 +99,7 @@ async function seedTienenie() {
                 title: title,
                 slug: slug,
                 locale: locale,
+                translationKey: page.key,
                 layout: [
                     {
                         blockType: 'hero',

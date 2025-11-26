@@ -58,6 +58,17 @@ export const Pages: CollectionConfig = {
             index: true,
         },
         {
+            name: 'translationKey',
+            type: 'text',
+            label: 'Translation Key',
+            admin: {
+                description: 'Key to link translated pages (e.g., "home", "autoplachty")',
+                position: 'sidebar',
+            },
+            index: true,
+        },
+
+        {
             name: 'content',
             type: 'richText',
             required: false,

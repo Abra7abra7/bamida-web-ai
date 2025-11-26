@@ -45,6 +45,7 @@ async function seedTechnologie() {
             title: title,
             slug: slug,
             locale: locale,
+            translationKey: 'technologie',
             layout: [
                 {
                     blockType: 'hero',
@@ -87,8 +88,12 @@ async function seedTechnologie() {
 
         const existingPage = await payload.find({
             collection: 'pages',
-            where: { slug: { equals: slug } },
-            locale: locale as any,
+            where: {
+                and: [
+                    { slug: { equals: slug } },
+                    { locale: { equals: locale } }
+                ]
+            },
         })
 
         if (existingPage.docs.length > 0) {
@@ -97,14 +102,12 @@ async function seedTechnologie() {
                 collection: 'pages',
                 id: existingPage.docs[0].id,
                 data: pageData,
-                locale: locale as any,
             })
         } else {
             console.log(`Creating ${slug} (${locale})`)
             await payload.create({
                 collection: 'pages',
                 data: pageData,
-                locale: locale as any,
             })
         }
     }

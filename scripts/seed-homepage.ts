@@ -94,6 +94,7 @@ async function seedHomepage() {
             title: title,
             slug: 'home',
             locale: locale,
+            translationKey: 'home',
             layout: [
                 {
                     blockType: 'hero',

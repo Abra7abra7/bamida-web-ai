@@ -25,24 +25,29 @@ async function checkSlugs() {
         const result = await payload.find({
             collection: 'pages',
             where: {
-                or: [
-                    { title: { contains: 'Autoplachty' } },
-                    { title: { contains: 'LKW-Planen' } },
-                    { title: { contains: 'Car Tarpaulins' } }
+                and: [
+                    { slug: { equals: 'home' } },
+                    { locale: { equals: locale } }
                 ]
             },
-            locale: locale as any,
         })
 
         if (result.docs.length > 0) {
             result.docs.forEach(doc => {
                 console.log(`Found page: ${doc.title} (ID: ${doc.id})`)
                 console.log(`Slug: ${doc.slug}`)
+                console.log(`Locale: ${doc.locale}`)
+                // Check Hero Title to verify content
+                const heroBlock = doc.layout?.find((b: any) => b.blockType === 'hero')
+                if (heroBlock) {
+                    console.log(`Hero Title: ${heroBlock.title}`)
+                }
             })
         } else {
             console.log('No pages found.')
         }
     }
+
 
 
 

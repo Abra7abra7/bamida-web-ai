@@ -322,6 +322,10 @@ export interface Page {
    */
   slug: string;
   locale: 'sk' | 'en' | 'de';
+  /**
+   * Key to link translated pages (e.g., "home", "autoplachty")
+   */
+  translationKey?: string | null;
   content?: {
     root: {
       type: string;
@@ -615,6 +619,7 @@ export interface PagesSelect<T extends boolean = true> {
       };
   slug?: T;
   locale?: T;
+  translationKey?: T;
   content?: T;
   excerpt?: T;
   wpId?: T;

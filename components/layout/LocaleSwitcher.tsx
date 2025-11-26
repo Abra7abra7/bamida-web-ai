@@ -11,36 +11,62 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Globe } from 'lucide-react'
 
+import { useState, useEffect } from 'react'
+import { getTranslatedSlugs } from '@/app/actions'
+
 export function LocaleSwitcher() {
     const locale = useLocale()
     const router = useRouter()
     const pathname = usePathname()
+    const [slugMap, setSlugMap] = useState<Record<string, string> | null>(null)
 
-    const handleLocaleChange = (newLocale: string) => {
-        // Replace the locale in the pathname
-        // e.g. /sk/contact -> /en/contact
-        // e.g. /contact -> /en/contact (if default locale is hidden)
+    useEffect(() => {
+        const fetchSlugs = async () => {
+            // Extract slug from pathname
+            // Pathname format: /locale/slug/parts or /slug/parts
+            const segments = pathname.split('/').filter(Boolean)
+            let currentSlug = ''
+            let currentLocale = locale
 
-        const segments = pathname.split('/')
-        // segments[0] is always empty string because pathname starts with /
+            // If first segment is locale, remove it
+            if (['sk', 'en', 'de'].includes(segments[0])) {
+                currentLocale = segments[0]
+                currentSlug = segments.slice(1).join('/')
+            } else {
+                currentSlug = segments.join('/')
+            }
 
-        // Check if the first segment is a locale
-        const hasLocalePrefix = ['sk', 'en', 'de'].includes(segments[1])
+            if (!currentSlug) {
+                currentSlug = 'home' // Default to home if root
+            }
 
-        let newPath
-        if (hasLocalePrefix) {
-            // Replace existing locale
-            segments[1] = newLocale
-            newPath = segments.join('/')
-        } else {
-            // Add locale prefix (unless it's the default locale and we want to hide it, 
-            // but for simplicity let's be explicit first or rely on middleware redirect)
-            newPath = `/${newLocale}${pathname}`
+            // Call server action
+            const map = await getTranslatedSlugs(currentSlug, currentLocale)
+            setSlugMap(map)
         }
 
-        // Special handling for default locale 'sk' if we want to hide prefix
-        // But since middleware handles redirects, pushing the prefixed path is safest
-        // The middleware will redirect /sk/contact -> /contact if configured to 'as-needed'
+        fetchSlugs()
+    }, [pathname, locale])
+
+    const handleLocaleChange = (newLocale: string) => {
+        let newPath = `/${newLocale}`
+
+        if (slugMap && slugMap[newLocale]) {
+            // If we have a direct translation, use it
+            if (slugMap[newLocale] !== 'home') {
+                newPath += `/${slugMap[newLocale]}`
+            }
+        } else {
+            // Fallback logic (try to keep same structure or go home)
+            // For now, just go to home of new locale if no mapping found
+            // or try to keep the same path if it might exist (risky)
+            const segments = pathname.split('/').filter(Boolean)
+            if (['sk', 'en', 'de'].includes(segments[0])) {
+                newPath += `/${segments.slice(1).join('/')}`
+            } else {
+                newPath += `/${segments.join('/')}`
+            }
+        }
 
         router.push(newPath)
     }
@@ -76,3 +102,4 @@ export function LocaleSwitcher() {
         </DropdownMenu>
     )
 }
+

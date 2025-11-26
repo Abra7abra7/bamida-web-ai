@@ -40,6 +40,7 @@ async function seedReferences() {
             title: title,
             slug: slug,
             locale: locale,
+            translationKey: 'referencie',
             layout: [
                 {
                     blockType: 'hero',

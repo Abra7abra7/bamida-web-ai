@@ -58,11 +58,11 @@ export default async function Home({ params }: Props) {
   const result = await payload.find({
     collection: 'pages',
     where: {
-      slug: {
-        equals: 'home',
-      },
+      and: [
+        { slug: { equals: 'home' } },
+        { locale: { equals: locale } },
+      ],
     },
-    locale: locale as any,
     depth: 2,
   })
 
