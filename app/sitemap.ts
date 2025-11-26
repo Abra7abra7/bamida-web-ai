@@ -5,6 +5,7 @@ import configPromise from '@payload-config'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const payload = await getPayload({ config: configPromise })
 
+    // Fetch products (existing)
     const products = await payload.find({
         collection: 'products',
         limit: 1000,
@@ -17,25 +18,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
     }))
 
+    // Fetch all migrated pages (NEW - 186 URLs)
+    const pages = await payload.find({
+        collection: 'pages',
+        limit: 200,
+        pagination: false,
+    })
+
+    const pageUrls = pages.docs.map((page: any) => {
+        const slug = page.slug === 'home' ? '' : page.slug
+
+        return {
+            url: `https://bamida.sk/${page.locale}/${slug}`,
+            lastModified: new Date(page.updatedAt),
+            changeFrequency: 'monthly' as const,
+            priority: page.slug === 'home' ? 1.0 : 0.8,
+        }
+    })
+
     return [
+        // Static pages
         {
             url: 'https://bamida.sk',
             lastModified: new Date(),
             changeFrequency: 'yearly',
             priority: 1,
         },
-        {
-            url: 'https://bamida.sk/about',
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: 'https://bamida.sk/contact',
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
+        // All migrated WordPress pages (186 URLs)
+        ...pageUrls,
+        // Product pages
         ...productUrls,
     ]
 }

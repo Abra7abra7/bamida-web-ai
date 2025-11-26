@@ -1,0 +1,532 @@
+
+> bamida-migration-scripts@1.0.0 migrate
+> tsx wordpress-migrate.ts
+
+[dotenv@17.2.3] injecting env (3) from ../.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+🚀 WordPress to Payload Migration
+==================================================
+
+📦 Initializing Payload...
+[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[✓] Pulling schema from database...
+[01:24:25] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
+  ✓ Payload initialized
+📂 Loading slug mappings from CSV...
+  ✓ Loaded 62 slug mappings
+📂 Loading WordPress pages...
+  ✓ Loaded 62 WordPress pages
+
+🔄 Starting migration...
+  Total pages to migrate: 62
+  Total URLs to create: 186 (SK/EN/DE)
+
+📝 Processing: Presentation (WP ID: 1818)
+  📄 Creating: [SK] presentation
+    ✓ Created: 10
+  📄 Creating: [EN] presentation
+    ✓ Created: 11
+  📄 Creating: [DE] presentation
+    ✓ Created: 12
+
+📝 Processing: Prezentácia (WP ID: 1814)
+  📄 Creating: [SK] prezentacia
+    ✓ Created: 13
+  📄 Creating: [EN] presentation
+    ✓ Created: 14
+  📄 Creating: [DE] prasentation
+    ✓ Created: 15
+
+📝 Processing: Miroslav Baran (WP ID: 1579)
+  📄 Creating: [SK] miroslav-baran
+    ✓ Created: 16
+  📄 Creating: [EN] miroslav-baran
+    ✓ Created: 17
+  📄 Creating: [DE] miroslav-baran
+    ✓ Created: 18
+
+📝 Processing: Galéria / Gallery (WP ID: 1532)
+  📄 Creating: [SK] eea-grants/galeria-gallery
+    ✓ Created: 19
+  📄 Creating: [EN] eea-grants/gallery
+    ✓ Created: 20
+  📄 Creating: [DE] eea-grants/galerie
+    ✓ Created: 21
+
+📝 Processing: Aktuality / News (WP ID: 1526)
+  📄 Creating: [SK] eea-grants/aktuality-news
+    ✓ Created: 22
+  📄 Creating: [EN] eea-grants/news
+    ✓ Created: 23
+  📄 Creating: [DE] eea-grants/aktuelles
+    ✓ Created: 24
+
+📝 Processing: Granty EHP / EEA Grants (WP ID: 1516)
+  📄 Creating: [SK] eea-grants/granty-ehp-eea-grants
+    ✓ Created: 25
+  📄 Creating: [EN] eea-grants/eea-grants
+    ✓ Created: 26
+  📄 Creating: [DE] eea-grants/ewr-zuschuesse
+    ✓ Created: 27
+
+📝 Processing: O projekte / About project (WP ID: 1501)
+  📄 Creating: [SK] eea-grants/o-projekte-about-project
+    ✓ Created: 28
+  📄 Creating: [EN] eea-grants/about-project
+    ✓ Created: 29
+  📄 Creating: [DE] eea-grants/ueber-das-projekt
+    ✓ Created: 30
+
+📝 Processing: EEA Grants (WP ID: 1479)
+  📄 Creating: [SK] eea-grants
+    ✓ Created: 31
+  📄 Creating: [EN] eea-grants
+    ✓ Created: 32
+  📄 Creating: [DE] eea-grants
+    ✓ Created: 33
+
+📝 Processing: Obstarávanie (WP ID: 1276)
+  📄 Creating: [SK] obstaravanie
+    ✓ Created: 34
+  📄 Creating: [EN] procurement
+    ✓ Created: 35
+  📄 Creating: [DE] beschaffung
+    ✓ Created: 36
+
+📝 Processing: Projekty (WP ID: 1244)
+  📄 Creating: [SK] projekty
+    ✓ Created: 37
+  📄 Creating: [EN] projects
+    ✓ Created: 38
+  📄 Creating: [DE] projekte
+    ✓ Created: 39
+
+📝 Processing: Formulár na odstúpenie od zmluvy (WP ID: 1199)
+  📄 Creating: [SK] formular-na-odstupenie-od-zmluvy
+    ✓ Created: 40
+  📄 Creating: [EN] withdrawal-form
+    ✓ Created: 41
+  📄 Creating: [DE] widerrufsformular
+    ✓ Created: 42
+
+📝 Processing: Ochrana osobných údajov (WP ID: 1197)
+  📄 Creating: [SK] ochrana-osobnych-udajov
+    ✓ Created: 43
+  📄 Creating: [EN] privacy-policy
+    ✓ Created: 44
+  📄 Creating: [DE] datenschutzrichtlinie
+    ✓ Created: 45
+
+📝 Processing: Obchodné podmienky (WP ID: 1195)
+  📄 Creating: [SK] obchodne-podmienky
+    ✓ Created: 46
+  📄 Creating: [EN] terms-and-conditions
+    ✓ Created: 47
+  📄 Creating: [DE] geschaftsbedingungen
+    ✓ Created: 48
+
+📝 Processing: Odstúpenie od zmluvy (WP ID: 1192)
+  📄 Creating: [SK] odstupenie-od-zmluvy
+    ✓ Created: 49
+  📄 Creating: [EN] withdrawal-from-contract
+    ✓ Created: 50
+  📄 Creating: [DE] widerrufsrecht
+    ✓ Created: 51
+
+📝 Processing: Číre fólie &#8211; zip systém (WP ID: 1126)
+  📄 Creating: [SK] cire-folie/cire-folie-zip-system
+    ✓ Created: 52
+  📄 Creating: [EN] clear-foils/zip-system
+    ✓ Created: 53
+  📄 Creating: [DE] klarsichtfolien/zip-system
+    ✓ Created: 54
+
+📝 Processing: Číre fólie (WP ID: 1121)
+  📄 Creating: [SK] cire-folie
+    ✓ Created: 55
+  📄 Creating: [EN] clear-foils
+    ✓ Created: 56
+  📄 Creating: [DE] klarsichtfolien
+    ✓ Created: 57
+
+📝 Processing: Cenník (WP ID: 814)
+  📄 Creating: [SK] cennik
+    ✓ Created: 58
+  📄 Creating: [EN] pricing
+    ✓ Created: 59
+  📄 Creating: [DE] preisliste
+    ✓ Created: 60
+
+📝 Processing: Zip systém (WP ID: 797)
+  📄 Creating: [SK] zip-system
+    ✓ Created: 61
+  📄 Creating: [EN] zip-system
+    ✓ Created: 62
+  📄 Creating: [DE] zip-system
+    ✓ Created: 63
+
+📝 Processing: Pergoly (WP ID: 676)
+  📄 Creating: [SK] pergoly
+    ✓ Created: 64
+  📄 Creating: [EN] pergolas
+    ✓ Created: 65
+  📄 Creating: [DE] pergolen
+    ✓ Created: 66
+
+📝 Processing: Party stan &#8211; Objednávka (WP ID: 641)
+  📄 Creating: [SK] party-stan-objednavka
+    ✓ Created: 67
+  📄 Creating: [EN] party-tent-order
+    ✓ Created: 68
+  📄 Creating: [DE] partyzelt-bestellung
+    ✓ Created: 69
+
+📝 Processing: Fóliovníková PP fólia (WP ID: 491)
+  📄 Creating: [SK] foliovnikova-pp-folia
+    ✓ Created: 70
+  📄 Creating: [EN] greenhouse-pp-foil
+    ✓ Created: 71
+  📄 Creating: [DE] gewaechshaus-pp-folie
+    ✓ Created: 72
+
+📝 Processing: Ochranné sieťoviny (WP ID: 486)
+  📄 Creating: [SK] ochranne-sietoviny
+    ✓ Created: 73
+  📄 Creating: [EN] protective-mesh
+    ✓ Created: 74
+  📄 Creating: [DE] schutznetze
+    ✓ Created: 75
+
+📝 Processing: Candy fólia mliečna (WP ID: 474)
+  📄 Creating: [SK] candy-folia-mliecna
+    ✓ Created: 76
+  📄 Creating: [EN] candy-foil-milky
+    ✓ Created: 77
+  📄 Creating: [DE] candy-folie-milchig
+    ✓ Created: 78
+
+📝 Processing: Číra fólia transparetná (WP ID: 469)
+  📄 Creating: [SK] cira-folia-transparetna
+    ✓ Created: 79
+  📄 Creating: [EN] transparent-clear-foil
+    ✓ Created: 80
+  📄 Creating: [DE] transparente-klarsichtfolie
+    ✓ Created: 81
+
+📝 Processing: Číra fólia dymová (WP ID: 464)
+  📄 Creating: [SK] cira-folia-dymova
+    ✓ Created: 82
+  📄 Creating: [EN] smoked-clear-foil
+    ✓ Created: 83
+  📄 Creating: [DE] rauch-klarsichtfolie
+    ✓ Created: 84
+
+📝 Processing: Brány z technických textílií (WP ID: 447)
+  📄 Creating: [SK] brany-z-technickych-textilii
+    ✓ Created: 85
+  📄 Creating: [EN] technical-textile-doors
+    ✓ Created: 86
+  📄 Creating: [DE] tore-aus-technischen-textilien
+    ✓ Created: 87
+
+📝 Processing: Lamelové PVC závesy (WP ID: 442)
+  📄 Creating: [SK] lamelove-pvc-zavesy
+    ✓ Created: 88
+  📄 Creating: [EN] pvc-strip-curtains
+    ✓ Created: 89
+  📄 Creating: [DE] pvc-streifenvorhaenge
+    ✓ Created: 90
+
+📝 Processing: Priemyselné závesy z PVC plachiet (WP ID: 434)
+  📄 Creating: [SK] priemyselne-zavesy-z-pvc-plachiet
+    ✓ Created: 91
+  📄 Creating: [EN] industrial-pvc-curtains
+    ✓ Created: 92
+  📄 Creating: [DE] industrie-pvc-vorhaenge
+    ✓ Created: 93
+
+📝 Processing: Deliace steny (WP ID: 429)
+  📄 Creating: [SK] deliace-steny
+    ✓ Created: 94
+  📄 Creating: [EN] partition-walls
+    ✓ Created: 95
+  📄 Creating: [DE] trennwaende
+    ✓ Created: 96
+
+📝 Processing: Sklenené zásteny (WP ID: 377)
+  📄 Creating: [SK] sklenene-zasteny
+    ✓ Created: 97
+  📄 Creating: [EN] glass-screens
+    ✓ Created: 98
+  📄 Creating: [DE] glaswaende
+    ✓ Created: 99
+
+📝 Processing: Sklenené obrazy (WP ID: 365)
+  📄 Creating: [SK] sklenene-obrazy
+    ✓ Created: 100
+  📄 Creating: [EN] glass-pictures
+    ✓ Created: 101
+  📄 Creating: [DE] glasbilder
+    ✓ Created: 102
+
+📝 Processing: Grafosklá (WP ID: 354)
+  📄 Creating: [SK] grafoskla
+    ✓ Created: 103
+  📄 Creating: [EN] graphic-glass
+    ✓ Created: 104
+  📄 Creating: [DE] grafikglas
+    ✓ Created: 105
+
+📝 Processing: Samolepiace fólie (WP ID: 340)
+  📄 Creating: [SK] samolepiace-folie
+    ✓ Created: 106
+  📄 Creating: [EN] self-adhesive-foils
+    ✓ Created: 107
+  📄 Creating: [DE] selbstklebende-folien
+    ✓ Created: 108
+
+📝 Processing: Banery a sieťoviny s UV tlačou (WP ID: 323)
+  📄 Creating: [SK] banery-a-sietoviny-s-uv-tlacou
+    ✓ Created: 109
+  📄 Creating: [EN] banners-mesh-uv-print
+    ✓ Created: 110
+  📄 Creating: [DE] banner-netze-uv-druck
+    ✓ Created: 111
+
+📝 Processing: Produkt (WP ID: 313)
+  📄 Creating: [SK] produkt
+    ✓ Created: 112
+  📄 Creating: [EN] product
+    ✓ Created: 113
+  📄 Creating: [DE] produkt
+    ✓ Created: 114
+
+📝 Processing: Služba (WP ID: 198)
+  📄 Creating: [SK] sluzba
+    ✓ Created: 115
+  📄 Creating: [EN] services
+    ✓ Created: 116
+  📄 Creating: [DE] dienstleistungen
+    ✓ Created: 117
+
+📝 Processing: Party stany (WP ID: 159)
+  📄 Creating: [SK] sluzba/party-stany
+    ✓ Created: 118
+  📄 Creating: [EN] services/party-tents
+    ✓ Created: 119
+  📄 Creating: [DE] dienstleistungen/partyzelte
+    ✓ Created: 120
+
+📝 Processing: Atypické tienenie &#8211; TENUVO (WP ID: 157)
+  📄 Creating: [SK] sluzba/atypicke-tienenie-tenuvo
+    ✓ Created: 121
+  📄 Creating: [EN] services/atypical-shading-tenuvo
+    ✓ Created: 122
+  📄 Creating: [DE] dienstleistungen/atypische-beschattung-tenuvo
+    ✓ Created: 123
+
+📝 Processing: Rôzne prekrytia (WP ID: 155)
+  📄 Creating: [SK] sluzba/rozne-prekrytia
+    ✓ Created: 124
+  📄 Creating: [EN] services/various-coverings
+    ✓ Created: 125
+  📄 Creating: [DE] dienstleistungen/verschiedene-ueberdachungen
+    ✓ Created: 126
+
+📝 Processing: Markízy (WP ID: 153)
+  📄 Creating: [SK] sluzba/markizy
+    ✓ Created: 127
+  📄 Creating: [EN] services/awnings
+    ✓ Created: 128
+  📄 Creating: [DE] dienstleistungen/markisen
+    ✓ Created: 129
+
+📝 Processing: Letné terasy (WP ID: 151)
+  📄 Creating: [SK] sluzba/letne-terasy
+    ✓ Created: 130
+  📄 Creating: [EN] services/summer-terraces
+    ✓ Created: 131
+  📄 Creating: [DE] dienstleistungen/sommerterrassen
+    ✓ Created: 132
+
+📝 Processing: Tienenie (WP ID: 149)
+  📄 Creating: [SK] sluzba/tienenie
+    ✓ Created: 133
+  📄 Creating: [EN] services/shading
+    ✓ Created: 134
+  📄 Creating: [DE] dienstleistungen/beschattung
+    ✓ Created: 135
+
+📝 Processing: Stropné pohľady (WP ID: 147)
+  📄 Creating: [SK] sluzba/stropne-pohlady
+    ✓ Created: 136
+  📄 Creating: [EN] services/ceiling-coverings
+    ✓ Created: 137
+  📄 Creating: [DE] dienstleistungen/deckenverkleidungen
+    ✓ Created: 138
+
+📝 Processing: Technické textílie pre poľnohospodárstvo (WP ID: 145)
+  📄 Creating: [SK] sluzba/technicke-textilie-pre-polnohospodarstvo
+    ✓ Created: 139
+  📄 Creating: [EN] services/technical-textiles-agriculture
+    ✓ Created: 140
+  📄 Creating: [DE] dienstleistungen/technische-textilien-landwirtschaft
+    ✓ Created: 141
+
+📝 Processing: Číre fólie (WP ID: 143)
+  📄 Creating: [SK] cire-folie/cire-foliee
+    ✓ Created: 142
+  📄 Creating: [EN] clear-foils/clear-foils
+    ✓ Created: 143
+  📄 Creating: [DE] klarsichtfolien/klarsichtfolien
+    ✓ Created: 144
+
+📝 Processing: Technické textílie pre priemysel (WP ID: 141)
+  📄 Creating: [SK] sluzba/technicke-textilie-pre-priemysel
+    ✓ Created: 145
+  📄 Creating: [EN] services/technical-textiles-industry
+    ✓ Created: 146
+  📄 Creating: [DE] dienstleistungen/technische-textilien-industrie
+    ✓ Created: 147
+
+📝 Processing: Autoplachty (WP ID: 139)
+  📄 Creating: [SK] sluzba/autoplachty
+    ✓ Created: 148
+  📄 Creating: [EN] services/truck-tarpaulins
+    ✓ Created: 149
+  📄 Creating: [DE] dienstleistungen/lkw-planen
+    ✓ Created: 150
+
+📝 Processing: Technické textílie (WP ID: 137)
+  📄 Creating: [SK] sluzba/technicke-textilie
+    ✓ Created: 151
+  📄 Creating: [EN] services/technical-textiles
+    ✓ Created: 152
+  📄 Creating: [DE] dienstleistungen/technische-textilien
+    ✓ Created: 153
+
+📝 Processing: Maľovaná reklama (WP ID: 135)
+  📄 Creating: [SK] sluzba/malovana-reklama
+    ✓ Created: 154
+  📄 Creating: [EN] services/painted-advertising
+    ✓ Created: 155
+  📄 Creating: [DE] dienstleistungen/gemalte-werbung
+    ✓ Created: 156
+
+📝 Processing: Sklenené produkty (WP ID: 133)
+  📄 Creating: [SK] sluzba/sklenene-produkty
+    ✓ Created: 157
+  📄 Creating: [EN] services/glass-products
+    ✓ Created: 158
+  📄 Creating: [DE] dienstleistungen/glasprodukte
+    ✓ Created: 159
+
+📝 Processing: Digitálna tlač (WP ID: 131)
+  📄 Creating: [SK] sluzba/digitalna-tlac
+    ✓ Created: 160
+  📄 Creating: [EN] services/digital-printing
+    ✓ Created: 161
+  📄 Creating: [DE] dienstleistungen/digitaldruck
+    ✓ Created: 162
+
+📝 Processing: Grafika (WP ID: 129)
+  📄 Creating: [SK] sluzba/grafika
+    ✓ Created: 163
+  📄 Creating: [EN] services/graphics
+    ✓ Created: 164
+  📄 Creating: [DE] dienstleistungen/grafik
+    ✓ Created: 165
+
+📝 Processing: Reklama (WP ID: 127)
+  📄 Creating: [SK] sluzba/reklama
+    ✓ Created: 166
+  📄 Creating: [EN] services/advertising
+    ✓ Created: 167
+  📄 Creating: [DE] dienstleistungen/werbung
+    ✓ Created: 168
+
+📝 Processing: Kontakt (WP ID: 47)
+  📄 Creating: [SK] kontakt
+    ✓ Created: 169
+  📄 Creating: [EN] contact
+    ✓ Created: 170
+  📄 Creating: [DE] kontakt
+    ✓ Created: 171
+
+📝 Processing: Blog (WP ID: 45)
+  📄 Creating: [SK] blog
+    ✓ Created: 172
+  📄 Creating: [EN] blog
+    ✓ Created: 173
+  📄 Creating: [DE] blog
+    ✓ Created: 174
+
+📝 Processing: Referencie (WP ID: 43)
+  📄 Creating: [SK] referencie
+    ✓ Created: 175
+  📄 Creating: [EN] references
+    ✓ Created: 176
+  📄 Creating: [DE] referenzen
+    ✓ Created: 177
+
+📝 Processing: Naše technológie (WP ID: 41)
+  📄 Creating: [SK] nase-technologie
+    ✓ Created: 178
+  📄 Creating: [EN] our-technologies
+    ✓ Created: 179
+  📄 Creating: [DE] unsere-technologien
+    ✓ Created: 180
+
+📝 Processing: Domov (WP ID: 20)
+  📄 Creating: [SK] home
+    ✓ Created: 181
+  📄 Creating: [EN] home
+    ✓ Created: 182
+  📄 Creating: [DE] startseite
+    ✓ Created: 183
+
+📝 Processing: Môj účet (WP ID: 13)
+  📄 Creating: [SK] moj-ucet
+    ✓ Created: 184
+  📄 Creating: [EN] my-account
+    ✓ Created: 185
+  📄 Creating: [DE] mein-konto
+    ✓ Created: 186
+
+📝 Processing: Pokladňa (WP ID: 12)
+  📄 Creating: [SK] kontrola-objednavky
+    ✓ Created: 187
+  📄 Creating: [EN] checkout
+    ✓ Created: 188
+  📄 Creating: [DE] kasse
+    ✓ Created: 189
+
+📝 Processing: Košík (WP ID: 11)
+  📄 Creating: [SK] kosik
+    ✓ Created: 190
+  📄 Creating: [EN] cart
+    ✓ Created: 191
+  📄 Creating: [DE] warenkorb
+    ✓ Created: 192
+
+📝 Processing: Obchod (WP ID: 10)
+  📄 Creating: [SK] obchod
+    ✓ Created: 193
+  📄 Creating: [EN] shop
+    ✓ Created: 194
+  📄 Creating: [DE] shop
+    ✓ Created: 195
+
+==================================================
+✅ MIGRATION COMPLETE!
+
+📊 Statistics:
+  ✓ Success: 186
+  ❌ Failed: 0
+  📄 Total: 186

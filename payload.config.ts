@@ -9,6 +9,7 @@ import { Users } from './app/(payload)/collections/Users'
 import { Media } from './app/(payload)/collections/Media'
 import { Products } from './app/(payload)/collections/Products'
 import { KnowledgeBase } from './app/(payload)/collections/KnowledgeBase'
+import { Pages } from './app/(payload)/collections/Pages'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +21,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Products, KnowledgeBase],
+  collections: [Users, Media, Products, KnowledgeBase, Pages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

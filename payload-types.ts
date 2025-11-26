@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     products: Product;
     'knowledge-base': KnowledgeBase;
+    pages: Page;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     'knowledge-base': KnowledgeBaseSelect<false> | KnowledgeBaseSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -229,6 +231,61 @@ export interface KnowledgeBase {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  /**
+   * Example: services/advertising, prezentacia, contact
+   */
+  slug: string;
+  locale: 'sk' | 'en' | 'de';
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Used for SEO meta description
+   */
+  excerpt?: string | null;
+  /**
+   * Original WordPress page ID (for migration tracking)
+   */
+  wpId?: number | null;
+  /**
+   * For nested pages (e.g., EEA Grants subpages)
+   */
+  parent?: (number | null) | Page;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    metaKeywords?: string | null;
+  };
+  featuredImage?: (number | null) | Media;
+  attachments?:
+    | {
+        file: number | Media;
+        title?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -266,6 +323,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'knowledge-base';
         value: number | KnowledgeBase;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -389,6 +450,36 @@ export interface KnowledgeBaseSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   tags?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  locale?: T;
+  content?: T;
+  excerpt?: T;
+  wpId?: T;
+  parent?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        metaKeywords?: T;
+      };
+  featuredImage?: T;
+  attachments?:
+    | T
+    | {
+        file?: T;
+        title?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

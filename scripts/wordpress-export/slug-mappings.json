@@ -1,0 +1,560 @@
+[
+  {
+    "wpId": 1818,
+    "wpSlug": "presentation",
+    "skSlug": "presentation",
+    "enSlug": "presentation",
+    "deSlug": "presentation",
+    "title": "Presentation",
+    "parent": 0
+  },
+  {
+    "wpId": 1814,
+    "wpSlug": "prezentacia",
+    "skSlug": "prezentacia",
+    "enSlug": "presentation",
+    "deSlug": "prasentation",
+    "title": "Prezentácia",
+    "parent": 0
+  },
+  {
+    "wpId": 1579,
+    "wpSlug": "miroslav-baran",
+    "skSlug": "miroslav-baran",
+    "enSlug": "miroslav-baran",
+    "deSlug": "miroslav-baran",
+    "title": "Miroslav Baran",
+    "parent": 0
+  },
+  {
+    "wpId": 1532,
+    "wpSlug": "galeria-gallery",
+    "skSlug": "eea-grants/galeria-gallery",
+    "enSlug": "eea-grants/galeria-gallery",
+    "deSlug": "eea-grants/galeria-gallery",
+    "title": "Galéria / Gallery",
+    "parent": 1479
+  },
+  {
+    "wpId": 1526,
+    "wpSlug": "aktuality-news",
+    "skSlug": "eea-grants/aktuality-news",
+    "enSlug": "eea-grants/aktuality-news",
+    "deSlug": "eea-grants/aktuality-news",
+    "title": "Aktuality / News",
+    "parent": 1479
+  },
+  {
+    "wpId": 1516,
+    "wpSlug": "granty-ehp-eea-grants",
+    "skSlug": "eea-grants/granty-ehp-eea-grants",
+    "enSlug": "eea-grants/granty-ehp-eea-grants",
+    "deSlug": "eea-grants/granty-ehp-eea-grants",
+    "title": "Granty EHP / EEA Grants",
+    "parent": 1479
+  },
+  {
+    "wpId": 1501,
+    "wpSlug": "o-projekte-about-project",
+    "skSlug": "eea-grants/o-projekte-about-project",
+    "enSlug": "eea-grants/o-projekte-about-project",
+    "deSlug": "eea-grants/o-projekte-about-project",
+    "title": "O projekte / About project",
+    "parent": 1479
+  },
+  {
+    "wpId": 1479,
+    "wpSlug": "eea-grants",
+    "skSlug": "eea-grants",
+    "enSlug": "eea-grants",
+    "deSlug": "eea-grants",
+    "title": "EEA Grants",
+    "parent": 0
+  },
+  {
+    "wpId": 1276,
+    "wpSlug": "obstaravanie",
+    "skSlug": "obstaravanie",
+    "enSlug": "procurement",
+    "deSlug": "beschaffung",
+    "title": "Obstarávanie",
+    "parent": 0
+  },
+  {
+    "wpId": 1244,
+    "wpSlug": "projekty",
+    "skSlug": "projekty",
+    "enSlug": "projects",
+    "deSlug": "projekte",
+    "title": "Projekty",
+    "parent": 0
+  },
+  {
+    "wpId": 1199,
+    "wpSlug": "formular-na-odstupenie-od-zmluvy",
+    "skSlug": "formular-na-odstupenie-od-zmluvy",
+    "enSlug": "withdrawal-form",
+    "deSlug": "widerrufsformular",
+    "title": "Formulár na odstúpenie od zmluvy",
+    "parent": 0
+  },
+  {
+    "wpId": 1197,
+    "wpSlug": "ochrana-osobnych-udajov",
+    "skSlug": "ochrana-osobnych-udajov",
+    "enSlug": "privacy-policy",
+    "deSlug": "datenschutzrichtlinie",
+    "title": "Ochrana osobných údajov",
+    "parent": 0
+  },
+  {
+    "wpId": 1195,
+    "wpSlug": "obchodne-podmienky",
+    "skSlug": "obchodne-podmienky",
+    "enSlug": "terms-and-conditions",
+    "deSlug": "geschaftsbedingungen",
+    "title": "Obchodné podmienky",
+    "parent": 0
+  },
+  {
+    "wpId": 1192,
+    "wpSlug": "odstupenie-od-zmluvy",
+    "skSlug": "odstupenie-od-zmluvy",
+    "enSlug": "withdrawal-from-contract",
+    "deSlug": "widerrufsrecht",
+    "title": "Odstúpenie od zmluvy",
+    "parent": 0
+  },
+  {
+    "wpId": 1126,
+    "wpSlug": "cire-folie-zip-system",
+    "skSlug": "cire-folie/cire-folie-zip-system",
+    "enSlug": "cire-folie/cire-folie-zip-system",
+    "deSlug": "cire-folie/cire-folie-zip-system",
+    "title": "Číre fólie &#8211; zip systém",
+    "parent": 1121
+  },
+  {
+    "wpId": 1121,
+    "wpSlug": "cire-folie",
+    "skSlug": "cire-folie",
+    "enSlug": "cire-folie",
+    "deSlug": "cire-folie",
+    "title": "Číre fólie",
+    "parent": 0
+  },
+  {
+    "wpId": 814,
+    "wpSlug": "cennik",
+    "skSlug": "cennik",
+    "enSlug": "pricing",
+    "deSlug": "preisliste",
+    "title": "Cenník",
+    "parent": 0
+  },
+  {
+    "wpId": 797,
+    "wpSlug": "zip-system",
+    "skSlug": "zip-system",
+    "enSlug": "zip-system",
+    "deSlug": "zip-system",
+    "title": "Zip systém",
+    "parent": 0
+  },
+  {
+    "wpId": 676,
+    "wpSlug": "pergoly",
+    "skSlug": "pergoly",
+    "enSlug": "pergoly",
+    "deSlug": "pergoly",
+    "title": "Pergoly",
+    "parent": 0
+  },
+  {
+    "wpId": 641,
+    "wpSlug": "party-stan-objednavka",
+    "skSlug": "party-stan-objednavka",
+    "enSlug": "party-stan-objednavka",
+    "deSlug": "party-stan-objednavka",
+    "title": "Party stan &#8211; Objednávka",
+    "parent": 0
+  },
+  {
+    "wpId": 491,
+    "wpSlug": "foliovnikova-pp-folia",
+    "skSlug": "foliovnikova-pp-folia",
+    "enSlug": "foliovnikova-pp-folia",
+    "deSlug": "foliovnikova-pp-folia",
+    "title": "Fóliovníková PP fólia",
+    "parent": 0
+  },
+  {
+    "wpId": 486,
+    "wpSlug": "ochranne-sietoviny",
+    "skSlug": "ochranne-sietoviny",
+    "enSlug": "ochranne-sietoviny",
+    "deSlug": "ochranne-sietoviny",
+    "title": "Ochranné sieťoviny",
+    "parent": 0
+  },
+  {
+    "wpId": 474,
+    "wpSlug": "candy-folia-mliecna",
+    "skSlug": "candy-folia-mliecna",
+    "enSlug": "candy-folia-mliecna",
+    "deSlug": "candy-folia-mliecna",
+    "title": "Candy fólia mliečna",
+    "parent": 0
+  },
+  {
+    "wpId": 469,
+    "wpSlug": "cira-folia-transparetna",
+    "skSlug": "cira-folia-transparetna",
+    "enSlug": "cira-folia-transparetna",
+    "deSlug": "cira-folia-transparetna",
+    "title": "Číra fólia transparetná",
+    "parent": 0
+  },
+  {
+    "wpId": 464,
+    "wpSlug": "cira-folia-dymova",
+    "skSlug": "cira-folia-dymova",
+    "enSlug": "cira-folia-dymova",
+    "deSlug": "cira-folia-dymova",
+    "title": "Číra fólia dymová",
+    "parent": 0
+  },
+  {
+    "wpId": 447,
+    "wpSlug": "brany-z-technickych-textilii",
+    "skSlug": "brany-z-technickych-textilii",
+    "enSlug": "brany-z-technickych-textilii",
+    "deSlug": "brany-z-technickych-textilii",
+    "title": "Brány z technických textílií",
+    "parent": 0
+  },
+  {
+    "wpId": 442,
+    "wpSlug": "lamelove-pvc-zavesy",
+    "skSlug": "lamelove-pvc-zavesy",
+    "enSlug": "lamelove-pvc-zavesy",
+    "deSlug": "lamelove-pvc-zavesy",
+    "title": "Lamelové PVC závesy",
+    "parent": 0
+  },
+  {
+    "wpId": 434,
+    "wpSlug": "priemyselne-zavesy-z-pvc-plachiet",
+    "skSlug": "priemyselne-zavesy-z-pvc-plachiet",
+    "enSlug": "priemyselne-zavesy-z-pvc-plachiet",
+    "deSlug": "priemyselne-zavesy-z-pvc-plachiet",
+    "title": "Priemyselné závesy z PVC plachiet",
+    "parent": 0
+  },
+  {
+    "wpId": 429,
+    "wpSlug": "deliace-steny",
+    "skSlug": "deliace-steny",
+    "enSlug": "deliace-steny",
+    "deSlug": "deliace-steny",
+    "title": "Deliace steny",
+    "parent": 0
+  },
+  {
+    "wpId": 377,
+    "wpSlug": "sklenene-zasteny",
+    "skSlug": "sklenene-zasteny",
+    "enSlug": "sklenene-zasteny",
+    "deSlug": "sklenene-zasteny",
+    "title": "Sklenené zásteny",
+    "parent": 0
+  },
+  {
+    "wpId": 365,
+    "wpSlug": "sklenene-obrazy",
+    "skSlug": "sklenene-obrazy",
+    "enSlug": "sklenene-obrazy",
+    "deSlug": "sklenene-obrazy",
+    "title": "Sklenené obrazy",
+    "parent": 0
+  },
+  {
+    "wpId": 354,
+    "wpSlug": "grafoskla",
+    "skSlug": "grafoskla",
+    "enSlug": "grafoskla",
+    "deSlug": "grafoskla",
+    "title": "Grafosklá",
+    "parent": 0
+  },
+  {
+    "wpId": 340,
+    "wpSlug": "samolepiace-folie",
+    "skSlug": "samolepiace-folie",
+    "enSlug": "samolepiace-folie",
+    "deSlug": "samolepiace-folie",
+    "title": "Samolepiace fólie",
+    "parent": 0
+  },
+  {
+    "wpId": 323,
+    "wpSlug": "banery-a-sietoviny-s-uv-tlacou",
+    "skSlug": "banery-a-sietoviny-s-uv-tlacou",
+    "enSlug": "banery-a-sietoviny-s-uv-tlacou",
+    "deSlug": "banery-a-sietoviny-s-uv-tlacou",
+    "title": "Banery a sieťoviny s UV tlačou",
+    "parent": 0
+  },
+  {
+    "wpId": 313,
+    "wpSlug": "produkt",
+    "skSlug": "produkt",
+    "enSlug": "product",
+    "deSlug": "produkt",
+    "title": "Produkt",
+    "parent": 0
+  },
+  {
+    "wpId": 198,
+    "wpSlug": "sluzba",
+    "skSlug": "sluzba",
+    "enSlug": "services",
+    "deSlug": "dienstleistungen",
+    "title": "Služba",
+    "parent": 0
+  },
+  {
+    "wpId": 159,
+    "wpSlug": "party-stany",
+    "skSlug": "sluzba/party-stany",
+    "enSlug": "services/party-stany",
+    "deSlug": "dienstleistungen/party-stany",
+    "title": "Party stany",
+    "parent": 198
+  },
+  {
+    "wpId": 157,
+    "wpSlug": "atypicke-tienenie-tenuvo",
+    "skSlug": "sluzba/atypicke-tienenie-tenuvo",
+    "enSlug": "services/atypicke-tienenie-tenuvo",
+    "deSlug": "dienstleistungen/atypicke-tienenie-tenuvo",
+    "title": "Atypické tienenie &#8211; TENUVO",
+    "parent": 198
+  },
+  {
+    "wpId": 155,
+    "wpSlug": "rozne-prekrytia",
+    "skSlug": "sluzba/rozne-prekrytia",
+    "enSlug": "services/rozne-prekrytia",
+    "deSlug": "dienstleistungen/rozne-prekrytia",
+    "title": "Rôzne prekrytia",
+    "parent": 198
+  },
+  {
+    "wpId": 153,
+    "wpSlug": "markizy",
+    "skSlug": "sluzba/markizy",
+    "enSlug": "services/markizy",
+    "deSlug": "dienstleistungen/markizy",
+    "title": "Markízy",
+    "parent": 198
+  },
+  {
+    "wpId": 151,
+    "wpSlug": "letne-terasy",
+    "skSlug": "sluzba/letne-terasy",
+    "enSlug": "services/letne-terasy",
+    "deSlug": "dienstleistungen/letne-terasy",
+    "title": "Letné terasy",
+    "parent": 198
+  },
+  {
+    "wpId": 149,
+    "wpSlug": "tienenie",
+    "skSlug": "sluzba/tienenie",
+    "enSlug": "services/tienenie",
+    "deSlug": "dienstleistungen/tienenie",
+    "title": "Tienenie",
+    "parent": 198
+  },
+  {
+    "wpId": 147,
+    "wpSlug": "stropne-pohlady",
+    "skSlug": "sluzba/stropne-pohlady",
+    "enSlug": "services/stropne-pohlady",
+    "deSlug": "dienstleistungen/stropne-pohlady",
+    "title": "Stropné pohľady",
+    "parent": 198
+  },
+  {
+    "wpId": 145,
+    "wpSlug": "technicke-textilie-pre-polnohospodarstvo",
+    "skSlug": "sluzba/technicke-textilie-pre-polnohospodarstvo",
+    "enSlug": "services/technicke-textilie-pre-polnohospodarstvo",
+    "deSlug": "dienstleistungen/technicke-textilie-pre-polnohospodarstvo",
+    "title": "Technické textílie pre poľnohospodárstvo",
+    "parent": 198
+  },
+  {
+    "wpId": 143,
+    "wpSlug": "cire-foliee",
+    "skSlug": "cire-folie/cire-foliee",
+    "enSlug": "cire-folie/cire-foliee",
+    "deSlug": "cire-folie/cire-foliee",
+    "title": "Číre fólie",
+    "parent": 1121
+  },
+  {
+    "wpId": 141,
+    "wpSlug": "technicke-textilie-pre-priemysel",
+    "skSlug": "sluzba/technicke-textilie-pre-priemysel",
+    "enSlug": "services/technicke-textilie-pre-priemysel",
+    "deSlug": "dienstleistungen/technicke-textilie-pre-priemysel",
+    "title": "Technické textílie pre priemysel",
+    "parent": 198
+  },
+  {
+    "wpId": 139,
+    "wpSlug": "autoplachty",
+    "skSlug": "sluzba/autoplachty",
+    "enSlug": "services/autoplachty",
+    "deSlug": "dienstleistungen/autoplachty",
+    "title": "Autoplachty",
+    "parent": 198
+  },
+  {
+    "wpId": 137,
+    "wpSlug": "technicke-textilie",
+    "skSlug": "sluzba/technicke-textilie",
+    "enSlug": "services/technical-textiles",
+    "deSlug": "dienstleistungen/technische-textilien",
+    "title": "Technické textílie",
+    "parent": 198
+  },
+  {
+    "wpId": 135,
+    "wpSlug": "malovana-reklama",
+    "skSlug": "sluzba/malovana-reklama",
+    "enSlug": "services/malovana-reklama",
+    "deSlug": "dienstleistungen/malovana-reklama",
+    "title": "Maľovaná reklama",
+    "parent": 198
+  },
+  {
+    "wpId": 133,
+    "wpSlug": "sklenene-produkty",
+    "skSlug": "sluzba/sklenene-produkty",
+    "enSlug": "services/sklenene-produkty",
+    "deSlug": "dienstleistungen/sklenene-produkty",
+    "title": "Sklenené produkty",
+    "parent": 198
+  },
+  {
+    "wpId": 131,
+    "wpSlug": "digitalna-tlac",
+    "skSlug": "sluzba/digitalna-tlac",
+    "enSlug": "services/digital-print",
+    "deSlug": "dienstleistungen/digitaldruck",
+    "title": "Digitálna tlač",
+    "parent": 198
+  },
+  {
+    "wpId": 129,
+    "wpSlug": "grafika",
+    "skSlug": "sluzba/grafika",
+    "enSlug": "services/graphics",
+    "deSlug": "dienstleistungen/grafik",
+    "title": "Grafika",
+    "parent": 198
+  },
+  {
+    "wpId": 127,
+    "wpSlug": "reklama",
+    "skSlug": "sluzba/reklama",
+    "enSlug": "services/advertising",
+    "deSlug": "dienstleistungen/werbung",
+    "title": "Reklama",
+    "parent": 198
+  },
+  {
+    "wpId": 47,
+    "wpSlug": "kontakt",
+    "skSlug": "kontakt",
+    "enSlug": "contact",
+    "deSlug": "kontakt",
+    "title": "Kontakt",
+    "parent": 0
+  },
+  {
+    "wpId": 45,
+    "wpSlug": "blog",
+    "skSlug": "blog",
+    "enSlug": "blog",
+    "deSlug": "blog",
+    "title": "Blog",
+    "parent": 0
+  },
+  {
+    "wpId": 43,
+    "wpSlug": "referencie",
+    "skSlug": "referencie",
+    "enSlug": "references",
+    "deSlug": "referenzen",
+    "title": "Referencie",
+    "parent": 0
+  },
+  {
+    "wpId": 41,
+    "wpSlug": "nase-technologie",
+    "skSlug": "nase-technologie",
+    "enSlug": "our-technologies",
+    "deSlug": "unsere-technologien",
+    "title": "Naše technológie",
+    "parent": 0
+  },
+  {
+    "wpId": 20,
+    "wpSlug": "domov",
+    "skSlug": "home",
+    "enSlug": "home",
+    "deSlug": "startseite",
+    "title": "Domov",
+    "parent": 0
+  },
+  {
+    "wpId": 13,
+    "wpSlug": "moj-ucet",
+    "skSlug": "moj-ucet",
+    "enSlug": "my-account",
+    "deSlug": "mein-konto",
+    "title": "Môj účet",
+    "parent": 0
+  },
+  {
+    "wpId": 12,
+    "wpSlug": "kontrola-objednavky",
+    "skSlug": "kontrola-objednavky",
+    "enSlug": "order-tracking",
+    "deSlug": "bestellverfolgung",
+    "title": "Pokladňa",
+    "parent": 0
+  },
+  {
+    "wpId": 11,
+    "wpSlug": "kosik",
+    "skSlug": "kosik",
+    "enSlug": "cart",
+    "deSlug": "warenkorb",
+    "title": "Košík",
+    "parent": 0
+  },
+  {
+    "wpId": 10,
+    "wpSlug": "obchod",
+    "skSlug": "obchod",
+    "enSlug": "shop",
+    "deSlug": "shop",
+    "title": "Obchod",
+    "parent": 0
+  }
+]

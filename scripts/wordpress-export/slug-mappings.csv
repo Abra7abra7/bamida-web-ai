@@ -1,0 +1,63 @@
+WP_ID,WP_Slug,SK_Slug,EN_Slug,DE_Slug,Title_SK,Title_EN,Title_DE,Parent
+1818,presentation,presentation,presentation,presentation,Presentation,Presentation,Präsentation,0
+1814,prezentacia,prezentacia,presentation,prasentation,Prezentácia,Presentation,Präsentation,0
+1579,miroslav-baran,miroslav-baran,miroslav-baran,miroslav-baran,Miroslav Baran,Miroslav Baran,Miroslav Baran,0
+1532,galeria-gallery,eea-grants/galeria-gallery,eea-grants/gallery,eea-grants/galerie,Galéria / Gallery,Gallery,Galerie,1479
+1526,aktuality-news,eea-grants/aktuality-news,eea-grants/news,eea-grants/aktuelles,Aktuality / News,News,Aktuelles,1479
+1516,granty-ehp-eea-grants,eea-grants/granty-ehp-eea-grants,eea-grants/eea-grants,eea-grants/ewr-zuschuesse,Granty EHP / EEA Grants,EEA Grants,EWR-Zuschüsse,1479
+1501,o-projekte-about-project,eea-grants/o-projekte-about-project,eea-grants/about-project,eea-grants/ueber-das-projekt,O projekte / About project,About Project,Über das Projekt,1479
+1479,eea-grants,eea-grants,eea-grants,eea-grants,EEA Grants,EEA Grants,EEA Grants,0
+1276,obstaravanie,obstaravanie,procurement,beschaffung,Obstarávanie,Procurement,Beschaffung,0
+1244,projekty,projekty,projects,projekte,Projekty,Projects,Projekte,0
+1199,formular-na-odstupenie-od-zmluvy,formular-na-odstupenie-od-zmluvy,withdrawal-form,widerrufsformular,Formulár na odstúpenie od zmluvy,Withdrawal Form,Widerrufsformular,0
+1197,ochrana-osobnych-udajov,ochrana-osobnych-udajov,privacy-policy,datenschutzrichtlinie,Ochrana osobných údajov,Privacy Policy,Datenschutzerklärung,0
+1195,obchodne-podmienky,obchodne-podmienky,terms-and-conditions,geschaftsbedingungen,Obchodné podmienky,Terms and Conditions,Allgemeine Geschäftsbedingungen,0
+1192,odstupenie-od-zmluvy,odstupenie-od-zmluvy,withdrawal-from-contract,widerrufsrecht,Odstúpenie od zmluvy,Withdrawal from Contract,Rücktritt vom Vertrag,0
+1126,cire-folie-zip-system,cire-folie/cire-folie-zip-system,clear-foils/zip-system,klarsichtfolien/zip-system,Číre fólie – zip systém,Clear Foils – Zip System,Klarsichtfolien – Zip-System,1121
+1121,cire-folie,cire-folie,clear-foils,klarsichtfolien,Číre fólie,Clear Foils,Klarsichtfolien,0
+814,cennik,cennik,pricing,preisliste,Cenník,Price List,Preisliste,0
+797,zip-system,zip-system,zip-system,zip-system,Zip systém,Zip System,Zip-System,0
+676,pergoly,pergoly,pergolas,pergolen,Pergoly,Pergolas,Pergolen,0
+641,party-stan-objednavka,party-stan-objednavka,party-tent-order,partyzelt-bestellung,Party stan – Objednávka,Party Tent – Order,Partyzelt – Bestellung,0
+491,foliovnikova-pp-folia,foliovnikova-pp-folia,greenhouse-pp-foil,gewaechshaus-pp-folie,Fóliovníková PP fólia,Greenhouse PP Foil,Gewächshaus-PP-Folie,0
+486,ochranne-sietoviny,ochranne-sietoviny,protective-mesh,schutznetze,Ochranné sieťoviny,Protective Mesh,Schutznetze,0
+474,candy-folia-mliecna,candy-folia-mliecna,candy-foil-milky,candy-folie-milchig,Candy fólia mliečna,Candy Foil Milky,Candy-Folie Milchig,0
+469,cira-folia-transparetna,cira-folia-transparetna,transparent-clear-foil,transparente-klarsichtfolie,Číra fólia transparentná,Transparent Clear Foil,Transparente Klarsichtfolie,0
+464,cira-folia-dymova,cira-folia-dymova,smoked-clear-foil,rauch-klarsichtfolie,Číra fólia dymová,Smoked Clear Foil,Rauch-Klarsichtfolie,0
+447,brany-z-technickych-textilii,brany-z-technickych-textilii,technical-textile-doors,tore-aus-technischen-textilien,Brány z technických textílií,Technical Textile Doors,Tore aus technischen Textilien,0
+442,lamelove-pvc-zavesy,lamelove-pvc-zavesy,pvc-strip-curtains,pvc-streifenvorhaenge,Lamelové PVC závesy,PVC Strip Curtains,PVC-Streifenvorhänge,0
+434,priemyselne-zavesy-z-pvc-plachiet,priemyselne-zavesy-z-pvc-plachiet,industrial-pvc-curtains,industrie-pvc-vorhaenge,Priemyselné závesy z PVC plachiet,Industrial PVC Curtains,Industrie-Vorhänge aus PVC-Planen,0
+429,deliace-steny,deliace-steny,partition-walls,trennwaende,Deliace steny,Partition Walls,Trennwände,0
+377,sklenene-zasteny,sklenene-zasteny,glass-screens,glaswaende,Sklenené zásteny,Glass Screens,Glaswände,0
+365,sklenene-obrazy,sklenene-obrazy,glass-pictures,glasbilder,Sklenené obrazy,Glass Pictures,Glasbilder,0
+354,grafoskla,grafoskla,graphic-glass,grafikglas,Grafosklá,Graphic Glass,Grafikglas,0
+340,samolepiace-folie,samolepiace-folie,self-adhesive-foils,selbstklebende-folien,Samolepiace fólie,Self-adhesive Foils,Selbstklebende Folien,0
+323,banery-a-sietoviny-s-uv-tlacou,banery-a-sietoviny-s-uv-tlacou,banners-mesh-uv-print,banner-netze-uv-druck,Banery a sieťoviny s UV tlačou,Banners and Mesh with UV Print,Banner und Netze mit UV-Druck,0
+313,produkt,produkt,product,produkt,Produkt,Product,Produkt,0
+198,sluzba,sluzba,services,dienstleistungen,Služba,Services,Dienstleistungen,0
+159,party-stany,sluzba/party-stany,services/party-tents,dienstleistungen/partyzelte,Party stany,Party Tents,Partyzelte,198
+157,atypicke-tienenie-tenuvo,sluzba/atypicke-tienenie-tenuvo,services/atypical-shading-tenuvo,dienstleistungen/atypische-beschattung-tenuvo,Atypické tienenie – TENUVO,Atypical Shading – TENUVO,Atypische Beschattung – TENUVO,198
+155,rozne-prekrytia,sluzba/rozne-prekrytia,services/various-coverings,dienstleistungen/verschiedene-ueberdachungen,Rôzne prekrytia,Various Coverings,Verschiedene Überdachungen,198
+153,markizy,sluzba/markizy,services/awnings,dienstleistungen/markisen,Markízy,Awnings,Markisen,198
+151,letne-terasy,sluzba/letne-terasy,services/summer-terraces,dienstleistungen/sommerterrassen,Letné terasy,Summer Terraces,Sommerterrassen,198
+149,tienenie,sluzba/tienenie,services/shading,dienstleistungen/beschattung,Tienenie,Shading,Beschattung,198
+147,stropne-pohlady,sluzba/stropne-pohlady,services/ceiling-coverings,dienstleistungen/deckenverkleidungen,Stropné pohľady,Ceiling Coverings,Deckenverkleidungen,198
+145,technicke-textilie-pre-polnohospodarstvo,sluzba/technicke-textilie-pre-polnohospodarstvo,services/technical-textiles-agriculture,dienstleistungen/technische-textilien-landwirtschaft,Technické textílie pre poľnohospodárstvo,Technical Textiles for Agriculture,Technische Textilien für die Landwirtschaft,198
+143,cire-foliee,cire-folie/cire-foliee,clear-foils/clear-foils,klarsichtfolien/klarsichtfolien,Číre fólie,Clear Foils,Klarsichtfolien,1121
+141,technicke-textilie-pre-priemysel,sluzba/technicke-textilie-pre-priemysel,services/technical-textiles-industry,dienstleistungen/technische-textilien-industrie,Technické textílie pre priemysel,Technical Textiles for Industry,Technische Textilien für die Industrie,198
+139,autoplachty,sluzba/autoplachty,services/truck-tarpaulins,dienstleistungen/lkw-planen,Autoplachty,Truck Tarpaulins,LKW-Planen,198
+137,technicke-textilie,sluzba/technicke-textilie,services/technical-textiles,dienstleistungen/technische-textilien,Technické textílie,Technical Textiles,Technische Textilien,198
+135,malovana-reklama,sluzba/malovana-reklama,services/painted-advertising,dienstleistungen/gemalte-werbung,Maľovaná reklama,Painted Advertising,Gemalte Werbung,198
+133,sklenene-produkty,sluzba/sklenene-produkty,services/glass-products,dienstleistungen/glasprodukte,Sklenené produkty,Glass Products,Glasprodukte,198
+131,digitalna-tlac,sluzba/digitalna-tlac,services/digital-printing,dienstleistungen/digitaldruck,Digitálna tlač,Digital Printing,Digitaldruck,198
+129,grafika,sluzba/grafika,services/graphics,dienstleistungen/grafik,Grafika,Graphics,Grafik,198
+127,reklama,sluzba/reklama,services/advertising,dienstleistungen/werbung,Reklama,Advertising,Werbung,198
+47,kontakt,kontakt,contact,kontakt,Kontakt,Contact,Kontakt,0
+45,blog,blog,blog,blog,Blog,Blog,Blog,0
+43,referencie,referencie,references,referenzen,Referencie,References,Referenzen,0
+41,nase-technologie,nase-technologie,our-technologies,unsere-technologien,Naše technológie,Our Technologies,Unsere Technologien,0
+20,domov,home,home,startseite,Domov,Home,Startseite,0
+13,moj-ucet,moj-ucet,my-account,mein-konto,Môj účet,My Account,Mein Konto,0
+12,kontrola-objednavky,kontrola-objednavky,checkout,kasse,Pokladňa,Checkout,Kasse,0
+11,kosik,kosik,cart,warenkorb,Košík,Cart,Warenkorb,0
+10,obchod,obchod,shop,shop,Obchod,Shop,Shop,0

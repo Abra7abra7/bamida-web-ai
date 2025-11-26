@@ -1,0 +1,12 @@
+
+> bamida-migration-scripts@1.0.0 test
+> tsx wordpress-migrate.ts --test
+
+🚀 WordPress to Payload Migration
+==================================================
+
+📦 Initializing Payload...
+
+❌ Migration failed: Error: Error: missing secret key. A secret key is needed to secure Payload.
+    at BasePayload.init (/Users/abra/Desktop/bamida-web-ai/node_modules/payload/src/index.ts:760:13)
+    at async migrate (/Users/abra/Desktop/bamida-web-ai/scripts/wordpress-migrate.ts:265:5)

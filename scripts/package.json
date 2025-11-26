@@ -1,0 +1,16 @@
+{
+    "name": "bamida-migration-scripts",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "export": "tsx wordpress-export.ts",
+        "test": "tsx wordpress-migrate.ts --test",
+        "migrate": "tsx wordpress-migrate.ts"
+    },
+    "dependencies": {
+        "csv-parse": "^5.6.0",
+        "dotenv": "^17.2.3",
+        "tsx": "^4.7.0"
+    }
+}
