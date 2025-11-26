@@ -1,21 +1,36 @@
-import type { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload'
+import { HeroBlock } from '../blocks/HeroBlock'
+import { ContentBlock } from '../blocks/ContentBlock'
+import { GalleryBlock } from '../blocks/GalleryBlock'
+
+import { FeaturesBlock } from '../blocks/FeaturesBlock'
+import { CTABlock } from '../blocks/CTABlock'
+import { LatestPostsBlock } from '../blocks/LatestPostsBlock'
 
 export const Pages: CollectionConfig = {
     slug: 'pages',
     admin: {
         useAsTitle: 'title',
-        defaultColumns: ['title', 'slug', 'locale', 'updatedAt'],
-        group: 'Content',
-    },
-    access: {
-        read: () => true,
+        defaultColumns: ['title', 'slug', 'updatedAt'],
     },
     fields: [
         {
             name: 'title',
             type: 'text',
             required: true,
-            label: 'Title / Názov',
+        },
+        {
+            name: 'layout',
+            type: 'blocks',
+            blocks: [
+                HeroBlock,
+                ContentBlock,
+                GalleryBlock,
+                FeaturesBlock,
+                CTABlock,
+                LatestPostsBlock
+            ],
+            label: 'Page Layout',
         },
         {
             name: 'slug',

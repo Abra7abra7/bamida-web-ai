@@ -236,6 +236,87 @@ export interface KnowledgeBase {
 export interface Page {
   id: number;
   title: string;
+  layout?:
+    | (
+        | {
+            title: string;
+            subtitle?: string | null;
+            backgroundImage?: (number | null) | Media;
+            type?: ('default' | 'large' | 'minimal') | null;
+            showSearch?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            title?: string | null;
+            images: (number | Media)[];
+            columns?: ('2' | '3' | '4') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  title: string;
+                  text?: string | null;
+                  icon?: ('star' | 'shield' | 'zap' | 'heart' | 'check' | 'trophy') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+        | {
+            title: string;
+            text?: string | null;
+            links?:
+              | {
+                  label: string;
+                  url: string;
+                  type?: ('primary' | 'secondary' | 'outline') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            style?: ('default' | 'boxed' | 'full') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cta';
+          }
+        | {
+            title?: string | null;
+            limit?: number | null;
+            showDate?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'latestPosts';
+          }
+      )[]
+    | null;
   /**
    * Example: services/advertising, prezentacia, contact
    */
@@ -459,6 +540,79 @@ export interface KnowledgeBaseSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  layout?:
+    | T
+    | {
+        hero?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              backgroundImage?: T;
+              type?: T;
+              showSearch?: T;
+              id?: T;
+              blockName?: T;
+            };
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              title?: T;
+              images?: T;
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cta?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    type?: T;
+                    id?: T;
+                  };
+              style?: T;
+              id?: T;
+              blockName?: T;
+            };
+        latestPosts?:
+          | T
+          | {
+              title?: T;
+              limit?: T;
+              showDate?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   slug?: T;
   locale?: T;
   content?: T;

@@ -1,29 +1,97 @@
-import { Hero } from '@/components/home/Hero'
-import { BentoGrid } from '@/components/home/BentoGrid'
+import { notFound } from 'next/navigation'
+import { getPayload } from 'payload'
+import config from '@/payload.config'
+import type { Metadata } from 'next'
+import { BlocksRenderer } from '@/components/blocks/BlocksRenderer'
+import { LexicalRenderer } from '@/components/payload/LexicalRenderer'
 
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Domov',
-  description: 'Bamida - Inovácie v priemyselných textíliách a tieniacej technike od roku 1995.',
+type Props = {
+  params: Promise<{
+    locale: string
+  }>
 }
 
-export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Hero />
-      <BentoGrid />
+/**
+ * Generate metadata for SEO
+ */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const payload = await getPayload({ config })
 
-      {/* Additional sections can be added here */}
-      <section className="py-20 bg-background">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold font-serif mb-6">Prečo Bamida?</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Sme lídrom v oblasti technických textílií a tieniacej techniky na Slovensku.
-            Kombinujeme 20 rokov skúseností s najmodernejšími technológiami.
-          </p>
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: {
+      and: [
+        { slug: { equals: 'home' } },
+        { locale: { equals: locale } },
+      ],
+    },
+    limit: 1,
+  })
+
+  const page = docs[0]
+
+  if (!page) {
+    return {
+      title: 'Domov',
+    }
+  }
+
+  return {
+    title: page.seo?.metaTitle || page.title,
+    description: page.seo?.metaDescription || page.excerpt,
+    keywords: page.seo?.metaKeywords,
+    alternates: {
+      languages: {
+        sk: '/sk',
+        en: '/en',
+        de: '/de',
+      },
+    },
+  }
+}
+
+export default async function Home({ params }: Props) {
+  const { locale } = await params
+  const payload = await getPayload({ config })
+
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'home',
+      },
+    },
+    locale: locale as any,
+    depth: 2,
+  })
+
+  const page = result.docs[0]
+
+  if (!page) {
+    // Fallback if no home page exists in Payload yet
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Homepage not found</h1>
+          <p>Please create a page with slug "home" in Payload CMS.</p>
         </div>
-      </section>
-    </div>
+      </div>
+    )
+  }
+
+  return (
+    <main className="min-h-screen">
+      {/* Page Content - Blocks or Legacy */}
+      {page.layout && page.layout.length > 0 ? (
+        <BlocksRenderer blocks={page.layout as any} />
+      ) : (
+        <div className="container mx-auto px-4 py-12">
+          <article className="prose prose-lg dark:prose-invert max-w-4xl mx-auto">
+            <LexicalRenderer content={page.content} />
+          </article>
+        </div>
+      )}
+    </main>
   )
 }
