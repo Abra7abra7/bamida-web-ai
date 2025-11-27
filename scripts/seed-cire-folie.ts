@@ -92,12 +92,24 @@ async function seedCireFolie() {
                 translationKey: page.key,
                 layout: [
                     {
-                        blockType: 'hero',
+                        blockType: 'heroModern',
                         title: title,
                         subtitle: `${title} - Transparent Protection`,
-                        type: 'default',
-                        backgroundImage: pageImageId || null,
-                        showSearch: false,
+                        type: 'centered',
+                        media: pageImageId ? { id: pageImageId } : null,
+                        cta: {
+                            label: locale === 'sk' ? 'Kontaktujte nás' : (locale === 'en' ? 'Contact Us' : 'Kontaktieren Sie uns'),
+                            url: `/${locale}/#contact`
+                        }
+                    },
+                    {
+                        blockType: 'stats',
+                        items: [
+                            { value: '100%', label: locale === 'sk' ? 'Priehľadnosť' : (locale === 'en' ? 'Transparency' : 'Transparenz') },
+                            { value: '-30°C', label: locale === 'sk' ? 'Odolnosť' : (locale === 'en' ? 'Resistance' : 'Widerstand') },
+                            { value: '5r', label: locale === 'sk' ? 'Záruka' : (locale === 'en' ? 'Warranty' : 'Garantie') },
+                        ],
+                        backgroundImage: pageImageId ? { id: pageImageId } : null,
                     },
                     {
                         blockType: 'content',
@@ -122,7 +134,6 @@ async function seedCireFolie() {
                                 ],
                                 direction: 'ltr',
                                 format: '',
-                                indent: 0,
                                 version: 1,
                             }
                         },
@@ -150,10 +161,22 @@ async function seedCireFolie() {
                         ],
                     },
                     {
-                        blockType: 'gallery',
+                        blockType: 'faq',
+                        title: 'FAQ',
+                        items: [
+                            { question: locale === 'sk' ? 'Ako sa fólie čistia?' : 'How to clean the foils?', answer: locale === 'sk' ? 'Stačí čistá voda a jemná handrička.' : 'Just clean water and a soft cloth.' },
+                            { question: locale === 'sk' ? 'Dajú sa fólie zrolovať?' : 'Can the foils be rolled up?', answer: locale === 'sk' ? 'Áno, naše systémy umožňujú jednoduché vyrolovanie.' : 'Yes, our systems allow easy rolling up.' },
+                        ]
+                    },
+                    {
+                        blockType: 'galleryMasonry',
                         title: locale === 'sk' ? 'Galéria' : (locale === 'en' ? 'Gallery' : 'Galerie'),
-                        columns: '3',
-                        images: findImages(imageKeywords, 6).map(id => ({ id })),
+                        description: locale === 'sk' ? 'Ukážka našich realizácií' : (locale === 'en' ? 'Our Projects' : 'Unsere Projekte'),
+                        images: findImages(imageKeywords, 6).map((id, index) => ({
+                            image: id,
+                            category: index % 2 === 0 ? 'exterior' : 'interior',
+                            caption: `Project ${index + 1}`
+                        })),
                     },
                 ],
             }

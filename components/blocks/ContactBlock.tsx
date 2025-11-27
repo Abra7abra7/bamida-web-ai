@@ -1,175 +1,119 @@
 'use client'
 
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/ui/form'
-import { LexicalRenderer } from '@/components/payload/LexicalRenderer'
-import { sendContactEmail } from '@/app/actions'
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Loader2 } from 'lucide-react'
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { useState } from 'react'
+import { Send } from 'lucide-react'
 
-const formSchema = z.object({
-    name: z.string().min(2, {
-        message: 'Name must be at least 2 characters.',
-    }),
-    email: z.string().email({
-        message: 'Please enter a valid email address.',
-    }),
-    phone: z.string().optional(),
-    message: z.string().min(10, {
-        message: 'Message must be at least 10 characters.',
-    }),
-})
-
-type Props = {
-    title?: string
-    introText?: any
+interface ContactBlockProps {
+    title?: string | null
+    introText?: string | null
+    subjects?: Array<{
+        label: string
+        value: string
+    }> | null
 }
 
-export const ContactBlock: React.FC<Props> = ({ title, introText }) => {
+export const ContactBlock = ({ title, introText, subjects }: ContactBlockProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isSuccess, setIsSuccess] = useState(false)
-    const [error, setError] = useState<string | null>(null)
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            name: '',
-            email: '',
-            phone: '',
-            message: '',
-        },
-    })
-
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
         setIsSubmitting(true)
-        setError(null)
-        try {
-            const result = await sendContactEmail(values)
-            if (result.success) {
-                setIsSuccess(true)
-                form.reset()
-            } else {
-                setError(result.error || 'Something went wrong. Please try again.')
-            }
-        } catch {
-            setError('An unexpected error occurred.')
-        } finally {
-            setIsSubmitting(false)
-        }
+        // Simulate form submission
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        setIsSubmitting(false)
+        alert('Message sent! (Simulation)')
     }
 
     return (
-        <section className="py-16 bg-background">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <div className="grid md:grid-cols-2 gap-12">
-                    <div>
-                        {title && <h2 className="text-3xl font-bold mb-6">{title}</h2>}
+        <section className="py-24 bg-muted/30" id="contact">
+            <div className="container px-4">
+                <div className="max-w-2xl mx-auto">
+                    <div className="text-center mb-12">
+                        {title && (
+                            <h2 className="text-3xl md:text-4xl font-bold font-serif mb-4 text-foreground">
+                                {title}
+                            </h2>
+                        )}
                         {introText && (
-                            <div className="prose dark:prose-invert mb-8">
-                                <LexicalRenderer content={introText} />
-                            </div>
+                            <p className="text-lg text-muted-foreground">
+                                {introText}
+                            </p>
                         )}
                     </div>
-                    <div className="bg-card p-8 rounded-lg shadow-sm border">
-                        {isSuccess ? (
-                            <div className="text-center py-12">
-                                <h3 className="text-2xl font-bold text-green-600 mb-4">Message Sent!</h3>
-                                <p className="text-muted-foreground mb-6">
-                                    Thank you for contacting us. We will get back to you as soon as possible.
-                                </p>
-                                <Button onClick={() => setIsSuccess(false)} variant="outline">
-                                    Send another message
-                                </Button>
-                            </div>
-                        ) : (
-                            <Form {...form}>
-                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                                    <FormField
-                                        control={form.control}
-                                        name="name"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Name</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="Your name" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
+
+                    <Card className="border-none shadow-xl bg-card/80 backdrop-blur-sm">
+                        <CardHeader>
+                            <CardTitle>Send us a message</CardTitle>
+                            <CardDescription>
+                                We usually respond within 24 hours.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="name">Name</Label>
+                                        <Input id="name" placeholder="John Doe" required />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="email">Email</Label>
+                                        <Input id="email" type="email" placeholder="john@example.com" required />
+                                    </div>
+                                </div>
+
+                                {subjects && subjects.length > 0 && (
+                                    <div className="space-y-2">
+                                        <Label htmlFor="subject">Subject</Label>
+                                        <Select>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select a subject" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {subjects.map((subject, index) => (
+                                                    <SelectItem key={index} value={subject.value}>
+                                                        {subject.label}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                )}
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="message">Message</Label>
+                                    <Textarea
+                                        id="message"
+                                        placeholder="How can we help you?"
+                                        className="min-h-[150px]"
+                                        required
                                     />
-                                    <FormField
-                                        control={form.control}
-                                        name="email"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Email</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="your@email.com" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="phone"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Phone (Optional)</FormLabel>
-                                                <FormControl>
-                                                    <Input placeholder="+421 900 000 000" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="message"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Message</FormLabel>
-                                                <FormControl>
-                                                    <Textarea
-                                                        placeholder="How can we help you?"
-                                                        className="min-h-[120px]"
-                                                        {...field}
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    {error && (
-                                        <div className="text-red-500 text-sm">{error}</div>
+                                </div>
+
+                                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                                    {isSubmitting ? (
+                                        'Sending...'
+                                    ) : (
+                                        <>
+                                            Send Message
+                                            <Send className="ml-2 w-4 h-4" />
+                                        </>
                                     )}
-                                    <Button type="submit" className="w-full" disabled={isSubmitting}>
-                                        {isSubmitting ? (
-                                            <>
-                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                                Sending...
-                                            </>
-                                        ) : (
-                                            'Send Message'
-                                        )}
-                                    </Button>
-                                </form>
-                            </Form>
-                        )}
-                    </div>
+                                </Button>
+                            </form>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </section>

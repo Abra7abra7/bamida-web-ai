@@ -241,6 +241,83 @@ export interface Page {
         | {
             title: string;
             subtitle?: string | null;
+            type?: ('video' | 'split' | 'centered') | null;
+            media: number | Media;
+            videoUrl?: string | null;
+            cta?: {
+              label?: string | null;
+              url?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroModern';
+          }
+        | {
+            title?: string | null;
+            logos: {
+              image: number | Media;
+              name?: string | null;
+              url?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'logoGrid';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            reviews: {
+              content: string;
+              author: string;
+              role?: string | null;
+              rating?: number | null;
+              image?: (number | null) | Media;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
+          }
+        | {
+            items: {
+              value: string;
+              label: string;
+              description?: string | null;
+              id?: string | null;
+            }[];
+            backgroundImage?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stats';
+          }
+        | {
+            title?: string | null;
+            items: {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            images: {
+              image: number | Media;
+              category?: ('exterior' | 'interior' | 'detail' | 'project') | null;
+              caption?: string | null;
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'galleryMasonry';
+          }
+        | {
+            title: string;
+            subtitle?: string | null;
             backgroundImage?: (number | null) | Media;
             type?: ('default' | 'large' | 'minimal') | null;
             showSearch?: boolean | null;
@@ -267,14 +344,6 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'content';
-          }
-        | {
-            title?: string | null;
-            images: (number | Media)[];
-            columns?: ('2' | '3' | '4') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'gallery';
           }
         | {
             title?: string | null;
@@ -317,21 +386,22 @@ export interface Page {
           }
         | {
             title?: string | null;
-            introText?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
+            images: (number | Media)[];
+            columns?: ('2' | '3' | '4') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
+        | {
+            title?: string | null;
+            introText?: string | null;
+            subjects?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'contact';
@@ -652,6 +722,101 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        heroModern?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              type?: T;
+              media?: T;
+              videoUrl?: T;
+              cta?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        logoGrid?:
+          | T
+          | {
+              title?: T;
+              logos?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              reviews?:
+                | T
+                | {
+                    content?: T;
+                    author?: T;
+                    role?: T;
+                    rating?: T;
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              backgroundImage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        galleryMasonry?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    category?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
         hero?:
           | T
           | {
@@ -667,15 +832,6 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
-              id?: T;
-              blockName?: T;
-            };
-        gallery?:
-          | T
-          | {
-              title?: T;
-              images?: T;
-              columns?: T;
               id?: T;
               blockName?: T;
             };
@@ -721,11 +877,27 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        gallery?:
+          | T
+          | {
+              title?: T;
+              images?: T;
+              columns?: T;
+              id?: T;
+              blockName?: T;
+            };
         contact?:
           | T
           | {
               title?: T;
               introText?: T;
+              subjects?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

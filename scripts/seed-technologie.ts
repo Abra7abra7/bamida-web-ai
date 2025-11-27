@@ -71,12 +71,24 @@ async function seedTechnologie() {
             translationKey: 'technologie',
             layout: [
                 {
-                    blockType: 'hero',
+                    blockType: 'heroModern',
                     title: title,
                     subtitle: `${title} - Modern Production`,
-                    type: 'default',
-                    backgroundImage: pageImageId || null,
-                    showSearch: false,
+                    type: 'centered',
+                    media: pageImageId ? { id: pageImageId } : null,
+                    cta: {
+                        label: locale === 'sk' ? 'Kontaktujte nás' : (locale === 'en' ? 'Contact Us' : 'Kontaktieren Sie uns'),
+                        url: `/${locale}/#contact`
+                    }
+                },
+                {
+                    blockType: 'stats',
+                    items: [
+                        { value: '100%', label: locale === 'sk' ? 'Presnosť' : (locale === 'en' ? 'Precision' : 'Präzision') },
+                        { value: '24/7', label: locale === 'sk' ? 'Výroba' : (locale === 'en' ? 'Production' : 'Produktion') },
+                        { value: '50+', label: locale === 'sk' ? 'Strojov' : (locale === 'en' ? 'Machines' : 'Maschinen') },
+                    ],
+                    backgroundImage: pageImageId ? { id: pageImageId } : null,
                 },
                 {
                     blockType: 'content',
@@ -101,7 +113,6 @@ async function seedTechnologie() {
                             ],
                             direction: 'ltr',
                             format: '',
-                            indent: 0,
                             version: 1,
                         }
                     },
@@ -129,10 +140,22 @@ async function seedTechnologie() {
                     ],
                 },
                 {
-                    blockType: 'gallery',
+                    blockType: 'faq',
+                    title: 'FAQ',
+                    items: [
+                        { question: locale === 'sk' ? 'Aké formáty súborov prijímate?' : 'What file formats do you accept?', answer: locale === 'sk' ? 'Prijímame PDF, AI, EPS, CDR.' : 'We accept PDF, AI, EPS, CDR.' },
+                        { question: locale === 'sk' ? 'Aká je maximálna šírka tlače?' : 'What is the maximum print width?', answer: locale === 'sk' ? 'Tlačíme až do šírky 320 cm.' : 'We print up to a width of 320 cm.' },
+                    ]
+                },
+                {
+                    blockType: 'galleryMasonry',
                     title: locale === 'sk' ? 'Strojový park' : (locale === 'en' ? 'Machine Park' : 'Maschinenpark'),
-                    columns: '3',
-                    images: findImages(imageKeywords, 6).map(id => ({ id })),
+                    description: locale === 'sk' ? 'Naše vybavenie' : (locale === 'en' ? 'Our Equipment' : 'Unsere Ausrüstung'),
+                    images: findImages(imageKeywords, 6).map((id, index) => ({
+                        image: id,
+                        category: index % 2 === 0 ? 'exterior' : 'interior',
+                        caption: `Machine ${index + 1}`
+                    })),
                 },
             ],
         }

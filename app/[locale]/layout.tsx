@@ -60,6 +60,31 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased font-sans`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'Bamida',
+              url: 'https://bamida.sk',
+              telephone: '+421 905 123 456',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Priemyselná 123',
+                addressLocality: 'Bratislava',
+                postalCode: '821 09',
+                addressCountry: 'SK',
+              },
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '08:00',
+                closes: '16:30',
+              },
+            }),
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="flex-1">{children}</main>

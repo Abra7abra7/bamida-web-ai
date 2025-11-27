@@ -175,12 +175,24 @@ async function seedReklama() {
                 translationKey: page.key,
                 layout: [
                     {
-                        blockType: 'hero',
+                        blockType: 'heroModern',
                         title: title,
                         subtitle: description,
-                        type: 'default',
-                        backgroundImage: pageImageId || null,
-                        showSearch: false,
+                        type: 'centered',
+                        media: pageImageId ? { id: pageImageId } : null,
+                        cta: {
+                            label: locale === 'sk' ? 'Kontaktujte nás' : (locale === 'en' ? 'Contact Us' : 'Kontaktieren Sie uns'),
+                            url: `/${locale}/#contact`
+                        }
+                    },
+                    {
+                        blockType: 'stats',
+                        items: [
+                            { value: '10+', label: locale === 'sk' ? 'Rokov skúseností' : (locale === 'en' ? 'Years Experience' : 'Jahre Erfahrung') },
+                            { value: '100+', label: locale === 'sk' ? 'Projektov' : (locale === 'en' ? 'Projects' : 'Projekte') },
+                            { value: '100%', label: locale === 'sk' ? 'Kvalita' : (locale === 'en' ? 'Quality' : 'Qualität') },
+                        ],
+                        backgroundImage: pageImageId ? { id: pageImageId } : null,
                     },
                     {
                         blockType: 'content',
@@ -210,7 +222,6 @@ async function seedReklama() {
                                 ],
                                 direction: 'ltr',
                                 format: '',
-                                indent: 0,
                                 version: 1,
                             }
                         },
@@ -241,24 +252,28 @@ async function seedReklama() {
                         blockType: 'cardGrid',
                         title: locale === 'sk' ? 'Súvisiace služby' : (locale === 'en' ? 'Related Services' : 'Verwandte Dienstleistungen'),
                         cards: [
-                            { title: 'Digitálna tlač', description: locale === 'sk' ? 'Veľkoformátová UV tlač' : 'Large format UV printing', link: `/${locale}/reklama/digitalna-tlac` },
-                            { title: 'Grafika', description: locale === 'sk' ? 'Kreatívny dizajn' : 'Creative design', link: `/${locale}/reklama/grafika` },
-                            { title: 'Maľovaná reklama', description: locale === 'sk' ? 'Ručná maľba na fasády' : 'Hand painting on facades', link: `/${locale}/reklama/malovana-reklama` },
+                            { title: 'Digitálna tlač', description: locale === 'sk' ? 'Veľkoformátová UV tlač' : 'Large format UV printing', link: `/${locale}/reklama/digitalna-tlac`, image: pageImageId ? { id: pageImageId } : null },
+                            { title: 'Grafika', description: locale === 'sk' ? 'Kreatívny dizajn' : 'Creative design', link: `/${locale}/reklama/grafika`, image: pageImageId ? { id: pageImageId } : null },
+                            { title: 'Maľovaná reklama', description: locale === 'sk' ? 'Ručná maľba na fasády' : 'Hand painting on facades', link: `/${locale}/reklama/malovana-reklama`, image: pageImageId ? { id: pageImageId } : null },
                         ]
                     },
                     {
-                        blockType: 'accordion',
+                        blockType: 'faq',
                         title: 'FAQ',
                         items: [
-                            { trigger: locale === 'sk' ? 'Ako dlho trvá výroba?' : 'How long does production take?', content: locale === 'sk' ? 'Štandardne 3-5 pracovných dní.' : 'Standard 3-5 working days.' },
-                            { trigger: locale === 'sk' ? 'Poskytujete záruku?' : 'Do you provide a warranty?', content: locale === 'sk' ? 'Áno, na všetky naše produkty poskytujeme záruku.' : 'Yes, we provide a warranty on all our products.' },
+                            { question: locale === 'sk' ? 'Ako dlho trvá výroba?' : 'How long does production take?', answer: locale === 'sk' ? 'Štandardne 3-5 pracovných dní.' : 'Standard 3-5 working days.' },
+                            { question: locale === 'sk' ? 'Poskytujete záruku?' : 'Do you provide a warranty?', answer: locale === 'sk' ? 'Áno, na všetky naše produkty poskytujeme záruku.' : 'Yes, we provide a warranty on all our products.' },
                         ]
                     },
                     {
-                        blockType: 'gallery',
+                        blockType: 'galleryMasonry',
                         title: locale === 'sk' ? 'Galéria' : (locale === 'en' ? 'Gallery' : 'Galerie'),
-                        columns: '3',
-                        images: galleryImageIds.map(id => ({ id })),
+                        description: locale === 'sk' ? 'Ukážka našich prác' : (locale === 'en' ? 'Our Work' : 'Unsere Arbeit'),
+                        images: galleryImageIds.map((id, index) => ({
+                            image: id,
+                            category: index % 2 === 0 ? 'exterior' : 'interior',
+                            caption: `Project ${index + 1}`
+                        })),
                     },
                 ],
             }

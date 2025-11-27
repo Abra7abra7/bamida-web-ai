@@ -184,10 +184,23 @@ async function seedTechnickeTextilie() {
                 translationKey: page.key,
                 layout: [
                     {
-                        blockType: 'hero',
+                        blockType: 'heroModern',
                         title: title,
                         subtitle: description,
-                        type: 'default',
+                        type: 'centered',
+                        media: pageImageId ? { id: pageImageId } : null,
+                        cta: {
+                            label: locale === 'sk' ? 'Kontaktujte nás' : (locale === 'en' ? 'Contact Us' : 'Kontaktieren Sie uns'),
+                            url: `/${locale}/#contact`
+                        }
+                    },
+                    {
+                        blockType: 'stats',
+                        items: [
+                            { value: '25+', label: locale === 'sk' ? 'Rokov skúseností' : (locale === 'en' ? 'Years Experience' : 'Jahre Erfahrung') },
+                            { value: '1000+', label: locale === 'sk' ? 'Realizácií' : (locale === 'en' ? 'Projects' : 'Projekte') },
+                            { value: '100%', label: locale === 'sk' ? 'Spokojnosť' : (locale === 'en' ? 'Satisfaction' : 'Zufriedenheit') },
+                        ],
                         backgroundImage: pageImageId ? { id: pageImageId } : null,
                     },
                     {
@@ -207,21 +220,20 @@ async function seedTechnickeTextilie() {
                                                 style: '',
                                                 text: description,
                                                 version: 1,
-                                            }
+                                            },
                                         ],
                                         direction: 'ltr',
                                         format: '',
                                         indent: 0,
                                         textFormat: 0,
                                         version: 1,
-                                    }
+                                    },
                                 ],
                                 direction: 'ltr',
                                 format: '',
-                                indent: 0,
                                 version: 1,
                             }
-                        }
+                        },
                     },
                     {
                         blockType: 'features',
@@ -236,24 +248,28 @@ async function seedTechnickeTextilie() {
                         blockType: 'cardGrid',
                         title: locale === 'sk' ? 'Kategórie' : (locale === 'en' ? 'Categories' : 'Kategorien'),
                         cards: [
-                            { title: 'Autoplachty', description: locale === 'sk' ? 'Pre všetky typy vozidiel' : 'For all vehicle types', link: `/${locale}/technicke-textilie/autoplachty` },
-                            { title: 'Priemysel', description: locale === 'sk' ? 'Deliace steny a závesy' : 'Partition walls and curtains', link: `/${locale}/technicke-textilie/priemysel` },
-                            { title: 'Poľnohospodárstvo', description: locale === 'sk' ? 'Ochranné siete a plachty' : 'Protective nets and sheets', link: `/${locale}/technicke-textilie/polnohospodarstvo` },
+                            { title: 'Autoplachty', description: locale === 'sk' ? 'Pre všetky typy vozidiel' : 'For all vehicle types', link: `/${locale}/technicke-textilie/autoplachty`, image: pageImageId ? { id: pageImageId } : null },
+                            { title: 'Priemysel', description: locale === 'sk' ? 'Deliace steny a závesy' : 'Partition walls and curtains', link: `/${locale}/technicke-textilie/priemysel`, image: pageImageId ? { id: pageImageId } : null },
+                            { title: 'Poľnohospodárstvo', description: locale === 'sk' ? 'Ochranné siete a plachty' : 'Protective nets and sheets', link: `/${locale}/technicke-textilie/polnohospodarstvo`, image: pageImageId ? { id: pageImageId } : null },
                         ]
                     },
                     {
-                        blockType: 'accordion',
+                        blockType: 'faq',
                         title: 'FAQ',
                         items: [
-                            { trigger: locale === 'sk' ? 'Aká je životnosť materiálov?' : 'What is the lifespan of materials?', content: locale === 'sk' ? 'Životnosť závisí od typu materiálu a použitia, zvyčajne 5-10 rokov.' : 'Lifespan depends on material type and usage, usually 5-10 years.' },
-                            { trigger: locale === 'sk' ? 'Robíte aj montáž?' : 'Do you also do installation?', content: locale === 'sk' ? 'Áno, zabezpečujeme kompletnú montáž.' : 'Yes, we provide complete installation.' },
+                            { question: locale === 'sk' ? 'Aká je životnosť materiálov?' : 'What is the lifespan of materials?', answer: locale === 'sk' ? 'Životnosť závisí od typu materiálu a použitia, zvyčajne 5-10 rokov.' : 'Lifespan depends on material type and usage, usually 5-10 years.' },
+                            { question: locale === 'sk' ? 'Robíte aj montáž?' : 'Do you also do installation?', answer: locale === 'sk' ? 'Áno, zabezpečujeme kompletnú montáž.' : 'Yes, we provide complete installation.' },
                         ]
                     },
                     {
-                        blockType: 'gallery',
+                        blockType: 'galleryMasonry',
                         title: locale === 'sk' ? 'Ukážky realizácií' : (locale === 'en' ? 'Project Examples' : 'Projektbeispiele'),
-                        columns: '3',
-                        images: galleryImages.map(id => ({ id })),
+                        description: locale === 'sk' ? 'Naše projekty' : (locale === 'en' ? 'Our Projects' : 'Unsere Projekte'),
+                        images: galleryImages.map((id, index) => ({
+                            image: id,
+                            category: index % 2 === 0 ? 'exterior' : 'interior',
+                            caption: `Project ${index + 1}`
+                        })),
                     },
                 ],
             }

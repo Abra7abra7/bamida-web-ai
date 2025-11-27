@@ -11,6 +11,12 @@ import { CardGridBlock } from './CardGridBlock'
 import { CarouselBlock } from './CarouselBlock'
 import { TimelineBlock } from './TimelineBlock'
 import { ContactBlock } from './ContactBlock'
+import { HeroModernBlock } from './HeroModernBlock'
+import { LogoGridBlock } from './LogoGridBlock'
+import { TestimonialsBlock } from './TestimonialsBlock'
+import { StatsBlock } from './StatsBlock'
+import { FAQBlock } from './FAQBlock'
+import { GalleryMasonryBlock } from './GalleryMasonryBlock'
 
 interface BaseBlock {
     blockType: string
@@ -47,6 +53,72 @@ interface HeroBlockData extends BaseBlock {
     showSearch?: boolean | null
 }
 
+interface HeroModernBlockData extends BaseBlock {
+    blockType: 'heroModern'
+    title: string
+    subtitle?: string | null
+    type?: 'video' | 'split' | 'centered'
+    media?: any
+    videoUrl?: string | null
+    cta?: {
+        label?: string | null
+        url?: string | null
+    }
+}
+
+interface LogoGridBlockData extends BaseBlock {
+    blockType: 'logoGrid'
+    title?: string | null
+    logos: Array<{
+        image: any
+        name?: string | null
+        url?: string | null
+    }>
+}
+
+interface TestimonialsBlockData extends BaseBlock {
+    blockType: 'testimonials'
+    title?: string | null
+    description?: string | null
+    reviews: Array<{
+        content: string
+        author: string
+        role?: string | null
+        rating?: number | null
+        image?: any
+    }>
+}
+
+interface StatsBlockData extends BaseBlock {
+    blockType: 'stats'
+    items: Array<{
+        value: string
+        label: string
+        description?: string | null
+    }>
+    backgroundImage?: any
+}
+
+interface FAQBlockData extends BaseBlock {
+    blockType: 'faq'
+    title?: string | null
+    items: Array<{
+        question: string
+        answer: string
+    }>
+}
+
+interface GalleryMasonryBlockData extends BaseBlock {
+    blockType: 'galleryMasonry'
+    title?: string | null
+    description?: string | null
+    images: Array<{
+        image: any
+        category?: string | null
+        caption?: string | null
+    }>
+}
+
 interface FeaturesBlockData extends BaseBlock {
     blockType: 'features'
     title?: string | null
@@ -81,8 +153,12 @@ interface LatestPostsBlockData extends BaseBlock {
 
 interface ContactBlockData extends BaseBlock {
     blockType: 'contact'
-    title?: string
-    introText: any
+    title?: string | null
+    introText?: string | null
+    subjects?: Array<{
+        label: string
+        value: string
+    }> | null
 }
 
 interface AccordionBlockData extends BaseBlock {
@@ -139,6 +215,12 @@ type Block =
     | GalleryBlockData
     | ContentBlockData
     | HeroBlockData
+    | HeroModernBlockData
+    | LogoGridBlockData
+    | TestimonialsBlockData
+    | StatsBlockData
+    | FAQBlockData
+    | GalleryMasonryBlockData
     | FeaturesBlockData
     | CTABlockData
     | LatestPostsBlockData
@@ -171,6 +253,18 @@ export const BlocksRenderer = ({ blocks }: BlocksRendererProps) => {
                         return <ContentBlock key={index} {...(block as ContentBlockData)} />
                     case 'hero':
                         return <HeroBlock key={index} {...(block as HeroBlockData)} />
+                    case 'heroModern':
+                        return <HeroModernBlock key={index} {...(block as HeroModernBlockData)} />
+                    case 'logoGrid':
+                        return <LogoGridBlock key={index} {...(block as LogoGridBlockData)} />
+                    case 'testimonials':
+                        return <TestimonialsBlock key={index} {...(block as TestimonialsBlockData)} />
+                    case 'stats':
+                        return <StatsBlock key={index} {...(block as StatsBlockData)} />
+                    case 'faq':
+                        return <FAQBlock key={index} {...(block as FAQBlockData)} />
+                    case 'galleryMasonry':
+                        return <GalleryMasonryBlock key={index} {...(block as GalleryMasonryBlockData)} />
                     case 'features':
                         return <FeaturesBlock key={index} {...(block as FeaturesBlockData)} />
                     case 'cta':

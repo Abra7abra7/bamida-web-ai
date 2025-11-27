@@ -132,12 +132,24 @@ async function seedTienenie() {
                 translationKey: page.key,
                 layout: [
                     {
-                        blockType: 'hero',
+                        blockType: 'heroModern',
                         title: title,
                         subtitle: `${title} - Comfort & Design`,
-                        type: 'default',
-                        backgroundImage: pageImageId || null,
-                        showSearch: false,
+                        type: 'centered',
+                        media: pageImageId ? { id: pageImageId } : null,
+                        cta: {
+                            label: locale === 'sk' ? 'Kontaktujte nás' : (locale === 'en' ? 'Contact Us' : 'Kontaktieren Sie uns'),
+                            url: `/${locale}/#contact`
+                        }
+                    },
+                    {
+                        blockType: 'stats',
+                        items: [
+                            { value: '15+', label: locale === 'sk' ? 'Rokov na trhu' : (locale === 'en' ? 'Years on Market' : 'Jahre am Markt') },
+                            { value: '300+', label: locale === 'sk' ? 'Inštalácií' : (locale === 'en' ? 'Installations' : 'Installationen') },
+                            { value: '5r', label: locale === 'sk' ? 'Záruka' : (locale === 'en' ? 'Warranty' : 'Garantie') },
+                        ],
+                        backgroundImage: pageImageId ? { id: pageImageId } : null,
                     },
                     {
                         blockType: 'content',
@@ -162,7 +174,6 @@ async function seedTienenie() {
                                 ],
                                 direction: 'ltr',
                                 format: '',
-                                indent: 0,
                                 version: 1,
                             }
                         },
@@ -190,10 +201,14 @@ async function seedTienenie() {
                         ],
                     },
                     {
-                        blockType: 'gallery',
+                        blockType: 'galleryMasonry',
                         title: locale === 'sk' ? 'Inšpirácie' : (locale === 'en' ? 'Inspirations' : 'Inspirationen'),
-                        columns: '3',
-                        images: findImages(imageKeywords, 6).map(id => ({ id })),
+                        description: locale === 'sk' ? 'Galéria našich realizácií' : (locale === 'en' ? 'Gallery of our projects' : 'Galerie unserer Projekte'),
+                        images: findImages(imageKeywords, 6).map((id, index) => ({
+                            image: id,
+                            category: index % 2 === 0 ? 'exterior' : 'interior',
+                            caption: `Project ${index + 1}`
+                        })),
                     },
                 ],
             }

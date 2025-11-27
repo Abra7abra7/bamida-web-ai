@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-
+import { getMediaUrl } from '@/lib/media'
 import { AISearch } from '../home/AISearch'
 
 interface HeroBlockProps {
@@ -28,9 +28,9 @@ export const HeroBlock = ({ title, subtitle, backgroundImage, type = 'default', 
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-black/50 z-10" />
-                {backgroundImage && backgroundImage.url && (
+                {backgroundImage && (
                     <Image
-                        src={backgroundImage.url}
+                        src={getMediaUrl(backgroundImage) || ''}
                         alt={backgroundImage.alt || title}
                         fill
                         className="object-cover"

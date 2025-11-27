@@ -25,60 +25,60 @@ export function Footer() {
     };
 
     return (
-        <footer className="bg-secondary text-secondary-foreground pt-16 pb-8 border-t border-border/50">
+        <footer className="bg-slate-950 text-white pt-16 pb-8 border-t border-white/10">
             <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
                 {/* Brand */}
                 <div className="space-y-4 lg:col-span-1">
-                    <Link href="/" className="text-2xl font-serif font-bold tracking-wider block">
+                    <Link href="/" className="text-2xl font-serif font-bold tracking-wider block text-white">
                         BAMIDA
                     </Link>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-slate-400 text-sm leading-relaxed">
                         {t('partner_text')}
                     </p>
                     <div className="flex gap-4 pt-2">
-                        <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="w-5 h-5" /></Link>
-                        <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="w-5 h-5" /></Link>
-                        <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-5 h-5" /></Link>
+                        <Link href="#" className="text-slate-400 hover:text-white transition-colors"><Facebook className="w-5 h-5" /></Link>
+                        <Link href="#" className="text-slate-400 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></Link>
+                        <Link href="#" className="text-slate-400 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></Link>
                     </div>
                 </div>
 
                 {/* Reklama */}
                 <div>
-                    <h3 className="font-bold mb-4 text-lg">{t('reklama')}</h3>
+                    <h3 className="font-bold mb-4 text-lg text-white">{t('reklama')}</h3>
                     <ul className="space-y-2 text-sm">
-                        <li><Link href={`/${currentLocale}${getSlug('reklama_grafika')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('reklama_grafika')}</Link></li>
-                        <li><Link href={`/${currentLocale}${getSlug('reklama_digitalna_tlac')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('reklama_digitalna_tlac')}</Link></li>
-                        <li><Link href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('reklama_sklenene_produkty')}</Link></li>
-                        <li><Link href={`/${currentLocale}${getSlug('reklama_malovana_reklama')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('reklama_malovana_reklama')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('reklama_grafika')}`} className="text-slate-400 hover:text-white transition-colors">{t('reklama_grafika')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('reklama_digitalna_tlac')}`} className="text-slate-400 hover:text-white transition-colors">{t('reklama_digitalna_tlac')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}`} className="text-slate-400 hover:text-white transition-colors">{t('reklama_sklenene_produkty')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('reklama_malovana_reklama')}`} className="text-slate-400 hover:text-white transition-colors">{t('reklama_malovana_reklama')}</Link></li>
                     </ul>
                 </div>
 
                 {/* Technické Textílie */}
                 <div>
-                    <h3 className="font-bold mb-4 text-lg">{t('technicke_textilie')}</h3>
+                    <h3 className="font-bold mb-4 text-lg text-white">{t('technicke_textilie')}</h3>
                     <ul className="space-y-2 text-sm">
-                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_autoplachty')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('technicke_textilie_autoplachty')}</Link></li>
-                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('technicke_textilie_priemysel')}</Link></li>
-                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_polnohospodarstvo')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('technicke_textilie_polnohospodarstvo')}</Link></li>
-                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_stropne_pohlady')}`} className="text-muted-foreground hover:text-primary transition-colors">{t('technicke_textilie_stropne_pohlady')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_autoplachty')}`} className="text-slate-400 hover:text-white transition-colors">{t('technicke_textilie_autoplachty')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}`} className="text-slate-400 hover:text-white transition-colors">{t('technicke_textilie_priemysel')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_polnohospodarstvo')}`} className="text-slate-400 hover:text-white transition-colors">{t('technicke_textilie_polnohospodarstvo')}</Link></li>
+                        <li><Link href={`/${currentLocale}${getSlug('technicke_textilie_stropne_pohlady')}`} className="text-slate-400 hover:text-white transition-colors">{t('technicke_textilie_stropne_pohlady')}</Link></li>
                     </ul>
                 </div>
 
                 {/* Rýchle odkazy */}
                 <div>
-                    <h3 className="font-bold mb-4 text-lg">{t('rychle_odkazy')}</h3>
+                    <h3 className="font-bold mb-4 text-lg text-white">{t('rychle_odkazy')}</h3>
                     <ul className="space-y-2 text-sm">
-                        <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">{t('home')}</Link></li>
-                        <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">{t('about')}</Link></li>
-                        <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">{t('kontakt')}</Link></li>
-                        <li><Link href="/gdpr" className="text-muted-foreground hover:text-primary transition-colors">GDPR</Link></li>
+                        <li><Link href="/" className="text-slate-400 hover:text-white transition-colors">{t('home')}</Link></li>
+                        <li><Link href="/about" className="text-slate-400 hover:text-white transition-colors">{t('about')}</Link></li>
+                        <li><Link href="/contact" className="text-slate-400 hover:text-white transition-colors">{t('kontakt')}</Link></li>
+                        <li><Link href="/gdpr" className="text-slate-400 hover:text-white transition-colors">GDPR</Link></li>
                     </ul>
                 </div>
 
                 {/* Kontakt */}
                 <div>
-                    <h3 className="font-bold mb-4 text-lg">{t('kontakt')}</h3>
-                    <ul className="space-y-3 text-sm text-muted-foreground">
+                    <h3 className="font-bold mb-4 text-lg text-white">{t('kontakt')}</h3>
+                    <ul className="space-y-3 text-sm text-slate-400">
                         <li className="flex items-start gap-3">
                             <Mail className="w-4 h-4 mt-1 shrink-0" />
                             <span className="break-all">info@bamida.sk</span>
@@ -95,7 +95,7 @@ export function Footer() {
                 </div>
             </div>
 
-            <div className="container pt-8 border-t border-border/10 text-center text-xs text-muted-foreground">
+            <div className="container pt-8 border-t border-white/10 text-center text-xs text-slate-500">
                 <p>&copy; {new Date().getFullYear()} BAMIDA. All rights reserved.</p>
             </div>
         </footer>

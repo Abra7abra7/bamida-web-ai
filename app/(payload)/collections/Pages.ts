@@ -4,6 +4,12 @@ import { AccordionBlock } from '../blocks/AccordionBlock'
 import { TabsBlock } from '../blocks/TabsBlock'
 import { CardGridBlock } from '../blocks/CardGridBlock'
 import { CarouselBlock } from '../blocks/CarouselBlock'
+import { HeroModernBlock } from '../blocks/HeroModernBlock'
+import { LogoGridBlock } from '../blocks/LogoGridBlock'
+import { TestimonialsBlock } from '../blocks/TestimonialsBlock'
+import { StatsBlock } from '../blocks/StatsBlock'
+import { FAQBlock } from '../blocks/FAQBlock'
+import { GalleryMasonryBlock } from '../blocks/GalleryMasonryBlock'
 import { TimelineBlock } from '../blocks/TimelineBlock'
 import { ContentBlock } from '../blocks/ContentBlock'
 import { GalleryBlock } from '../blocks/GalleryBlock'
@@ -29,12 +35,18 @@ export const Pages: CollectionConfig = {
             name: 'layout',
             type: 'blocks',
             blocks: [
+                HeroModernBlock,
+                LogoGridBlock,
+                TestimonialsBlock,
+                StatsBlock,
+                FAQBlock,
+                GalleryMasonryBlock,
                 HeroBlock,
                 ContentBlock,
-                GalleryBlock,
                 FeaturesBlock,
                 CTABlock,
                 LatestPostsBlock,
+                GalleryBlock,
                 ContactBlock,
                 AccordionBlock,
                 TabsBlock,
