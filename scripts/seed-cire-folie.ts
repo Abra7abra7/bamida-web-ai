@@ -16,8 +16,28 @@ async function seedCireFolie() {
     const { default: config } = await import('../payload.config')
     const payload = await getPayload({ config })
 
-    const heroImage = await payload.find({ collection: 'media', limit: 1 })
-    const heroImageId = heroImage.docs[0]?.id
+    const allMedia = await payload.find({ collection: 'media', limit: 100 })
+
+    const findImage = (keywords: string[]) => {
+        const found = allMedia.docs.find(doc => {
+            const text = (doc.alt + ' ' + doc.filename).toLowerCase()
+            return keywords.some(k => text.includes(k.toLowerCase()))
+        })
+        return found?.id || allMedia.docs[0]?.id
+    }
+
+    const findImages = (keywords: string[], count: number = 6) => {
+        const found = allMedia.docs.filter(doc => {
+            const text = (doc.alt + ' ' + doc.filename).toLowerCase()
+            return keywords.some(k => text.includes(k.toLowerCase()))
+        })
+        if (found.length < count) {
+            const remaining = count - found.length
+            const others = allMedia.docs.filter(d => !found.includes(d)).slice(0, remaining)
+            return [...found, ...others].map(doc => doc.id)
+        }
+        return found.slice(0, count).map(doc => doc.id)
+    }
 
     const pages = [
         { key: 'cire-folie', sk: 'Číre fólie', en: 'Clear Foils', de: 'Klarsichtfolien' },
@@ -59,6 +79,12 @@ async function seedCireFolie() {
 
             const description = descriptions[page.key]?.[locale] || `Content for ${title}`
 
+            let imageKeywords: string[] = []
+            if (page.key === 'cire-folie') imageKeywords = ['folia', 'foil', 'pvc']
+            if (page.key === 'cire-folie/zip-system') imageKeywords = ['zip', 'system']
+
+            const pageImageId = findImage(imageKeywords)
+
             const pageData: any = {
                 title: title,
                 slug: slug,
@@ -70,7 +96,7 @@ async function seedCireFolie() {
                         title: title,
                         subtitle: `${title} - Transparent Protection`,
                         type: 'default',
-                        backgroundImage: heroImageId || null,
+                        backgroundImage: pageImageId || null,
                         showSearch: false,
                     },
                     {
@@ -100,6 +126,34 @@ async function seedCireFolie() {
                                 version: 1,
                             }
                         },
+                    },
+                    {
+                        blockType: 'features',
+                        title: locale === 'sk' ? 'Prečo naše fólie?' : (locale === 'en' ? 'Why Our Foils?' : 'Warum unsere Folien?'),
+                        description: locale === 'sk' ? 'Kvalitné riešenie pre vašu terasu či altánok.' : (locale === 'en' ? 'Quality solution for your terrace or gazebo.' : 'Qualitätslösung für Ihre Terrasse oder Ihren Pavillon.'),
+                        items: [
+                            {
+                                title: locale === 'sk' ? 'Kryštáľová čírosť' : (locale === 'en' ? 'Crystal Clarity' : 'Kristallklarheit'),
+                                text: locale === 'sk' ? 'Dokonalý výhľad bez skreslenia.' : (locale === 'en' ? 'Perfect view without distortion.' : 'Perfekte Sicht ohne Verzerrung.'),
+                                icon: 'star',
+                            },
+                            {
+                                title: locale === 'sk' ? 'Odolnosť voči vetru' : (locale === 'en' ? 'Wind Resistance' : 'Windbeständigkeit'),
+                                text: locale === 'sk' ? 'Ochrana pred nepriaznivým počasím.' : (locale === 'en' ? 'Protection against adverse weather.' : 'Schutz vor schlechtem Wetter.'),
+                                icon: 'shield',
+                            },
+                            {
+                                title: locale === 'sk' ? 'Celoročné využitie' : (locale === 'en' ? 'Year-round Use' : 'Ganzjährige Nutzung'),
+                                text: locale === 'sk' ? 'Predĺžte si sezónu na terase.' : (locale === 'en' ? 'Extend your terrace season.' : 'Verlängern Sie Ihre Terrassensaison.'),
+                                icon: 'check',
+                            },
+                        ],
+                    },
+                    {
+                        blockType: 'gallery',
+                        title: locale === 'sk' ? 'Galéria' : (locale === 'en' ? 'Gallery' : 'Galerie'),
+                        columns: '3',
+                        images: findImages(imageKeywords, 6).map(id => ({ id })),
                     },
                 ],
             }

@@ -315,6 +315,111 @@ export interface Page {
             blockName?: string | null;
             blockType: 'latestPosts';
           }
+        | {
+            title?: string | null;
+            introText?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact';
+          }
+        | {
+            title?: string | null;
+            items?:
+              | {
+                  trigger: string;
+                  content: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'accordion';
+          }
+        | {
+            title?: string | null;
+            items?:
+              | {
+                  label: string;
+                  content: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: any;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'tabs';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            cards?:
+              | {
+                  title: string;
+                  description?: string | null;
+                  image?: (number | null) | Media;
+                  link?: string | null;
+                  linkText?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cardGrid';
+          }
+        | {
+            title?: string | null;
+            items?:
+              | {
+                  image: number | Media;
+                  text?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'carousel';
+          }
+        | {
+            title?: string | null;
+            items?:
+              | {
+                  year: string;
+                  title: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'timeline';
+          }
       )[]
     | null;
   /**
@@ -613,6 +718,89 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               limit?: T;
               showDate?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contact?:
+          | T
+          | {
+              title?: T;
+              introText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        accordion?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    trigger?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        tabs?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    label?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cardGrid?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              cards?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    image?: T;
+                    link?: T;
+                    linkText?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        carousel?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        timeline?:
+          | T
+          | {
+              title?: T;
+              items?:
+                | T
+                | {
+                    year?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

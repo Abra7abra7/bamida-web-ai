@@ -1,7 +1,13 @@
 import { CollectionConfig } from 'payload'
 import { HeroBlock } from '../blocks/HeroBlock'
+import { AccordionBlock } from '../blocks/AccordionBlock'
+import { TabsBlock } from '../blocks/TabsBlock'
+import { CardGridBlock } from '../blocks/CardGridBlock'
+import { CarouselBlock } from '../blocks/CarouselBlock'
+import { TimelineBlock } from '../blocks/TimelineBlock'
 import { ContentBlock } from '../blocks/ContentBlock'
 import { GalleryBlock } from '../blocks/GalleryBlock'
+import { ContactBlock } from '../blocks/ContactBlock'
 
 import { FeaturesBlock } from '../blocks/FeaturesBlock'
 import { CTABlock } from '../blocks/CTABlock'
@@ -28,7 +34,13 @@ export const Pages: CollectionConfig = {
                 GalleryBlock,
                 FeaturesBlock,
                 CTABlock,
-                LatestPostsBlock
+                LatestPostsBlock,
+                ContactBlock,
+                AccordionBlock,
+                TabsBlock,
+                CardGridBlock,
+                CarouselBlock,
+                TimelineBlock,
             ],
             label: 'Page Layout',
         },

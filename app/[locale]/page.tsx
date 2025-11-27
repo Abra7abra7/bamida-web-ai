@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getPayload } from 'payload'
-import config from '@/payload.config'
 import type { Metadata } from 'next'
+import config from '@/payload.config'
 import { BlocksRenderer } from '@/components/blocks/BlocksRenderer'
 import { LexicalRenderer } from '@/components/payload/LexicalRenderer'
 
@@ -74,7 +74,7 @@ export default async function Home({ params }: Props) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Homepage not found</h1>
-          <p>Please create a page with slug "home" in Payload CMS.</p>
+          <p>Please create a page with slug &quot;home&quot; in Payload CMS.</p>
         </div>
       </div>
     )
@@ -87,6 +87,7 @@ export default async function Home({ params }: Props) {
         <BlocksRenderer blocks={page.layout as any} />
       ) : (
         <div className="container mx-auto px-4 py-12">
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">&quot;Kvalita, ktorá vydrží.&quot;</p>
           <article className="prose prose-lg dark:prose-invert max-w-4xl mx-auto">
             <LexicalRenderer content={page.content} />
           </article>

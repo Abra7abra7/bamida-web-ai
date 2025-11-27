@@ -4,6 +4,7 @@ import configPromise from '@payload-config'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const payload = await getPayload({ config: configPromise })
+    const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://bamida.sk'
 
     // Fetch products (existing)
     const products = await payload.find({
@@ -12,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
 
     const productUrls = products.docs.map((product) => ({
-        url: `https://bamida.sk/products/${product.category}/${product.slug}`,
+        url: `${baseUrl}/products/${product.category}/${product.slug}`,
         lastModified: new Date(product.updatedAt),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
@@ -21,15 +22,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Fetch all migrated pages (NEW - 186 URLs)
     const pages = await payload.find({
         collection: 'pages',
-        limit: 200,
+        limit: 1000, // Increased limit to ensure we get all pages
         pagination: false,
     })
 
-    const pageUrls = pages.docs.map((page: any) => {
+    const pageUrls = pages.docs.map((page) => {
         const slug = page.slug === 'home' ? '' : page.slug
+        // Ensure locale is present, default to 'sk' if missing (though schema requires it)
+        const locale = page.locale || 'sk'
 
         return {
-            url: `https://bamida.sk/${page.locale}/${slug}`,
+            url: `${baseUrl}/${locale}/${slug}`,
             lastModified: new Date(page.updatedAt),
             changeFrequency: 'monthly' as const,
             priority: page.slug === 'home' ? 1.0 : 0.8,
@@ -39,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
         // Static pages
         {
-            url: 'https://bamida.sk',
+            url: baseUrl,
             lastModified: new Date(),
             changeFrequency: 'yearly',
             priority: 1,

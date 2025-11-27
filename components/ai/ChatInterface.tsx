@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 // import { useChat } from '@ai-sdk/react'
@@ -23,7 +24,7 @@ export function ChatInterface() {
         e.preventDefault()
         if (!input.trim() || isLoading) return
 
-        const userMessage = { role: 'user', content: input }
+        const userMessage: any = { role: 'user', content: input }
         setMessages((prev) => [...prev, userMessage])
         setInput('')
         setIsLoading(true)
@@ -71,8 +72,7 @@ export function ChatInterface() {
             console.error('Chat error:', error)
             setMessages((prev) => [
                 ...prev,
-                { role: 'assistant', content: `Chyba: ${error.message || 'Nastala neočakávaná chyba.'}` },
-            ])
+                { role: 'assistant', content: 'Ospravedlňujeme sa, ale momentálne sa vyskytla chyba. Skúste to prosím neskôr.' }])
         } finally {
             setIsLoading(false)
         }

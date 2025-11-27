@@ -16,8 +16,28 @@ async function seedTienenie() {
     const { default: config } = await import('../payload.config')
     const payload = await getPayload({ config })
 
-    const heroImage = await payload.find({ collection: 'media', limit: 1 })
-    const heroImageId = heroImage.docs[0]?.id
+    const allMedia = await payload.find({ collection: 'media', limit: 100 })
+
+    const findImage = (keywords: string[]) => {
+        const found = allMedia.docs.find(doc => {
+            const text = (doc.alt + ' ' + doc.filename).toLowerCase()
+            return keywords.some(k => text.includes(k.toLowerCase()))
+        })
+        return found?.id || allMedia.docs[0]?.id
+    }
+
+    const findImages = (keywords: string[], count: number = 6) => {
+        const found = allMedia.docs.filter(doc => {
+            const text = (doc.alt + ' ' + doc.filename).toLowerCase()
+            return keywords.some(k => text.includes(k.toLowerCase()))
+        })
+        if (found.length < count) {
+            const remaining = count - found.length
+            const others = allMedia.docs.filter(d => !found.includes(d)).slice(0, remaining)
+            return [...found, ...others].map(doc => doc.id)
+        }
+        return found.slice(0, count).map(doc => doc.id)
+    }
 
     const pages = [
         { key: 'tienenie', sk: 'Tienenie', en: 'Shading', de: 'Beschattung' },
@@ -95,6 +115,16 @@ async function seedTienenie() {
 
             const description = descriptions[page.key]?.[locale] || `Content for ${title}`
 
+            let imageKeywords: string[] = []
+            if (page.key === 'tienenie') imageKeywords = ['tienenie', 'shading', 'slnko']
+            if (page.key === 'tienenie/pergoly') imageKeywords = ['pergola', 'structure']
+            if (page.key === 'tienenie/letne-terasy') imageKeywords = ['terasa', 'terrace', 'zasklenie']
+            if (page.key === 'tienenie/markizy') imageKeywords = ['markiza', 'awning']
+            if (page.key === 'tienenie/rozne-prekrytia') imageKeywords = ['prekrytie', 'covering', 'pristresok']
+            if (page.key === 'tienenie/atypicke-tienenie') imageKeywords = ['atyp', 'tenuvo', 'plachta']
+
+            const pageImageId = findImage(imageKeywords)
+
             const pageData: any = {
                 title: title,
                 slug: slug,
@@ -106,7 +136,7 @@ async function seedTienenie() {
                         title: title,
                         subtitle: `${title} - Comfort & Design`,
                         type: 'default',
-                        backgroundImage: heroImageId || null,
+                        backgroundImage: pageImageId || null,
                         showSearch: false,
                     },
                     {
@@ -136,6 +166,34 @@ async function seedTienenie() {
                                 version: 1,
                             }
                         },
+                    },
+                    {
+                        blockType: 'features',
+                        title: locale === 'sk' ? 'Výhody nášho tienenia' : (locale === 'en' ? 'Benefits of Our Shading' : 'Vorteile unserer Beschattung'),
+                        description: locale === 'sk' ? 'Doprajte si pohodlie a ochranu pred slnkom s našimi riešeniami.' : (locale === 'en' ? 'Enjoy comfort and protection from the sun with our solutions.' : 'Genießen Sie Komfort und Schutz vor der Sonne mit unseren Lösungen.'),
+                        items: [
+                            {
+                                title: locale === 'sk' ? 'Moderný dizajn' : (locale === 'en' ? 'Modern Design' : 'Modernes Design'),
+                                text: locale === 'sk' ? 'Estetické a funkčné riešenia pre každú architektúru.' : (locale === 'en' ? 'Aesthetic and functional solutions for every architecture.' : 'Ästhetische und funktionale Lösungen für jede Architektur.'),
+                                icon: 'star',
+                            },
+                            {
+                                title: locale === 'sk' ? 'Dlhá životnosť' : (locale === 'en' ? 'Long Lifespan' : 'Lange Lebensdauer'),
+                                text: locale === 'sk' ? 'Konštrukcie z kvalitných materiálov odolných voči korózii.' : (locale === 'en' ? 'Structures made of high-quality corrosion-resistant materials.' : 'Konstruktionen aus hochwertigen korrosionsbeständigen Materialien.'),
+                                icon: 'shield',
+                            },
+                            {
+                                title: locale === 'sk' ? 'Komfort' : (locale === 'en' ? 'Comfort' : 'Komfort'),
+                                text: locale === 'sk' ? 'Jednoduché ovládanie a maximálne pohodlie.' : (locale === 'en' ? 'Easy operation and maximum comfort.' : 'Einfache Bedienung und maximaler Komfort.'),
+                                icon: 'heart',
+                            },
+                        ],
+                    },
+                    {
+                        blockType: 'gallery',
+                        title: locale === 'sk' ? 'Inšpirácie' : (locale === 'en' ? 'Inspirations' : 'Inspirationen'),
+                        columns: '3',
+                        images: findImages(imageKeywords, 6).map(id => ({ id })),
                     },
                 ],
             }

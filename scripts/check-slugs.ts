@@ -39,7 +39,7 @@ async function checkSlugs() {
                 console.log(`Locale: ${doc.locale}`)
                 // Check Hero Title to verify content
                 const heroBlock = doc.layout?.find((b: any) => b.blockType === 'hero')
-                if (heroBlock) {
+                if (heroBlock && 'title' in heroBlock) {
                     console.log(`Hero Title: ${heroBlock.title}`)
                 }
             })

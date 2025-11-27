@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { BlocksRenderer } from '@/components/blocks/BlocksRenderer'
+
 
 export default function SearchPage({ params: { locale } }: { params: { locale: string } }) {
     const searchParams = useSearchParams()
@@ -13,6 +14,7 @@ export default function SearchPage({ params: { locale } }: { params: { locale: s
     // Mock search for now, or implement real search API
     useEffect(() => {
         if (query) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setLoading(true)
             // Simulate API call
             setTimeout(() => {
@@ -37,7 +39,7 @@ export default function SearchPage({ params: { locale } }: { params: { locale: s
     return (
         <div className="min-h-screen bg-background pt-20 pb-10">
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-bold mb-8">Výsledky vyhľadávania: "{query}"</h1>
+                <h1 className="text-4xl font-bold mb-8">Výsledky vyhľadávania: &quot;{query}&quot;</h1>
 
                 {loading ? (
                     <p>Vyhľadávam...</p>
@@ -51,7 +53,7 @@ export default function SearchPage({ params: { locale } }: { params: { locale: s
                         ))}
                     </div>
                 ) : (
-                    <p>Pre výraz "{query}" sa nenašli žiadne výsledky.</p>
+                    <p>Pre výraz &quot;{query}&quot; sa nenašli žiadne výsledky.</p>
                 )}
             </div>
         </div>

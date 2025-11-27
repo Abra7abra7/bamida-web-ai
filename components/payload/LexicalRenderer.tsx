@@ -1,23 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
-interface LexicalNode {
-    type: string
-    children?: LexicalNode[]
-    text?: string
-    format?: number
-    tag?: string
-    [key: string]: any
-}
 
-interface LexicalContent {
-    root: {
-        children: LexicalNode[]
-        [key: string]: any
-    }
-}
+
+
 
 interface LexicalRendererProps {
-    content: LexicalContent | null | undefined
+    content: any
     className?: string
 }
 
@@ -25,12 +14,10 @@ interface LexicalRendererProps {
  * Render Lexical JSON content to HTML
  * Supports basic nodes: paragraph, text, heading, list, link
  */
-export function LexicalRenderer({ content, className = '' }: LexicalRendererProps) {
-    if (!content || !content.root || !content.root.children) {
-        return null
-    }
+export const LexicalRenderer = ({ content, className = '' }: LexicalRendererProps) => {
+    if (!content) return null
 
-    const renderNode = (node: LexicalNode, index: number): React.ReactNode => {
+    const renderNode = (node: any, index: number): React.ReactNode => {
         // Text node
         if (node.type === 'text') {
             let text: React.ReactNode = node.text || ''
@@ -49,7 +36,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
         if (node.type === 'paragraph') {
             return (
                 <p key={index} className="mb-4">
-                    {node.children?.map((child, i) => renderNode(child, i))}
+                    {node.children?.map((child: any, i: number) => renderNode(child, i))}
                 </p>
             )
         }
@@ -69,7 +56,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
             return React.createElement(
                 tag,
                 { key: index, className: headingClasses[tag] || '' },
-                node.children?.map((child, i) => renderNode(child, i))
+                node.children?.map((child: any, i: number) => renderNode(child, i))
             )
         }
 
@@ -82,7 +69,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
 
             return (
                 <ListTag key={index} className={listClass}>
-                    {node.children?.map((child, i) => renderNode(child, i))}
+                    {node.children?.map((child: any, i: number) => renderNode(child, i))}
                 </ListTag>
             )
         }
@@ -90,7 +77,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
         if (node.type === 'listitem') {
             return (
                 <li key={index} className="mb-2">
-                    {node.children?.map((child, i) => renderNode(child, i))}
+                    {node.children?.map((child: any, i: number) => renderNode(child, i))}
                 </li>
             )
         }
@@ -105,7 +92,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
                     target={node.newTab ? '_blank' : undefined}
                     rel={node.newTab ? 'noopener noreferrer' : undefined}
                 >
-                    {node.children?.map((child, i) => renderNode(child, i))}
+                    {node.children?.map((child: any, i: number) => renderNode(child, i))}
                 </a>
             )
         }
@@ -114,7 +101,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
         if (node.type === 'quote') {
             return (
                 <blockquote key={index} className="border-l-4 border-gray-300 pl-4 italic my-4">
-                    {node.children?.map((child, i) => renderNode(child, i))}
+                    {node.children?.map((child: any, i: number) => renderNode(child, i))}
                 </blockquote>
             )
         }
@@ -123,7 +110,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
         if (node.type === 'code') {
             return (
                 <pre key={index} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto my-4">
-                    <code>{node.children?.map((child, i) => renderNode(child, i))}</code>
+                    <code>{node.children?.map((child: any, i: number) => renderNode(child, i))}</code>
                 </pre>
             )
         }
@@ -137,7 +124,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
         if (node.children) {
             return (
                 <div key={index}>
-                    {node.children.map((child, i) => renderNode(child, i))}
+                    {node.children.map((child: any, i: number) => renderNode(child, i))}
                 </div>
             )
         }
@@ -147,7 +134,7 @@ export function LexicalRenderer({ content, className = '' }: LexicalRendererProp
 
     return (
         <div className={`lexical-content ${className}`}>
-            {content.root.children.map((node, index) => renderNode(node, index))}
+            {content.root.children.map((node: any, index: number) => renderNode(node, index))}
         </div>
     )
 }

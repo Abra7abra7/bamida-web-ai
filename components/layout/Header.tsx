@@ -1,12 +1,10 @@
 'use client'
 
 import * as React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useTranslations, useLocale } from 'next-intl';
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from '@/lib/utils'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link } from '@/i18n/routing'
+import { Button } from '@/components/ui/button'
+import { Search } from 'lucide-react'
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -16,10 +14,10 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Search, Menu, X, ChevronDown, ShoppingCart } from 'lucide-react'
 import { LocaleSwitcher } from './LocaleSwitcher'
+import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
 // Moved inside component to access translations and locale
 
@@ -78,28 +76,7 @@ export function Header() {
         }
     };
 
-    const components = [
-        {
-            title: t('branding'),
-            href: getSlug('reklama'),
-            description: t('b2b_branding_desc'),
-        },
-        {
-            title: t('industry'),
-            href: getSlug('priemysel'),
-            description: t('b2b_industry_desc'),
-        },
-        {
-            title: t('shading'),
-            href: getSlug('tienenie'),
-            description: t('b2c_shading_desc'),
-        },
-        {
-            title: t('materials'),
-            href: getSlug('materialy'),
-            description: t('materials_desc'),
-        },
-    ];
+
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -117,8 +94,54 @@ export function Header() {
                                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                                         <ListItem title={t('reklama')} href={`/${currentLocale}${getSlug('reklama')}`} />
                                         <ListItem title={t('reklama_grafika')} href={`/${currentLocale}${getSlug('reklama_grafika')}`} />
-                                        <ListItem title={t('reklama_digitalna_tlac')} href={`/${currentLocale}${getSlug('reklama_digitalna_tlac')}`} />
-                                        <ListItem title={t('reklama_sklenene_produkty')} href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}`} />
+
+                                        {/* Digitálna tlač with sub-items */}
+                                        <div className="row-span-3">
+                                            <ListItem
+                                                title={t('reklama_digitalna_tlac')}
+                                                href={`/${currentLocale}${getSlug('reklama_digitalna_tlac')}`}
+                                                className="mb-2 font-bold bg-accent/50"
+                                            />
+                                            <ul className="pl-4 space-y-2 border-l-2 border-muted ml-2">
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('reklama_digitalna_tlac')}/banery-a-sietoviny`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('reklama_digitalna_tlac_banery')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('reklama_digitalna_tlac')}/samolepiace-folie`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('reklama_digitalna_tlac_samolepiace')}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        {/* Sklenené produkty with sub-items */}
+                                        <div className="row-span-3">
+                                            <ListItem
+                                                title={t('reklama_sklenene_produkty')}
+                                                href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}`}
+                                                className="mb-2 font-bold bg-accent/50"
+                                            />
+                                            <ul className="pl-4 space-y-2 border-l-2 border-muted ml-2">
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}/grafoskla`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('reklama_sklenene_produkty_grafoskla')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}/sklenene-obrazy`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('reklama_sklenene_produkty_sklenene_obrazy')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('reklama_sklenene_produkty')}/sklenene-zasteny`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('reklama_sklenene_produkty_sklenene_zasteny')}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                         <ListItem title={t('reklama_malovana_reklama')} href={`/${currentLocale}${getSlug('reklama_malovana_reklama')}`} />
                                     </ul>
                                 </NavigationMenuContent>
@@ -131,8 +154,59 @@ export function Header() {
                                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                                         <ListItem title={t('technicke_textilie')} href={`/${currentLocale}${getSlug('technicke_textilie')}`} />
                                         <ListItem title={t('technicke_textilie_autoplachty')} href={`/${currentLocale}${getSlug('technicke_textilie_autoplachty')}`} />
-                                        <ListItem title={t('technicke_textilie_priemysel')} href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}`} />
-                                        <ListItem title={t('technicke_textilie_polnohospodarstvo')} href={`/${currentLocale}${getSlug('technicke_textilie_polnohospodarstvo')}`} />
+
+                                        {/* Pre priemysel with sub-items */}
+                                        <div className="row-span-3">
+                                            <ListItem
+                                                title={t('technicke_textilie_priemysel')}
+                                                href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}`}
+                                                className="mb-2 font-bold bg-accent/50"
+                                            />
+                                            <ul className="pl-4 space-y-2 border-l-2 border-muted ml-2">
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}/deliace-steny`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('technicke_textilie_priemysel_deliace_steny')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}/priemyselne-zavesy`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('technicke_textilie_priemysel_priemyselne_zavesy')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}/lamelove-zavesy`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('technicke_textilie_priemysel_lamelove_zavesy')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('technicke_textilie_priemysel')}/brany`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('technicke_textilie_priemysel_brany')}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        {/* Pre poľnohospodárstvo with sub-items */}
+                                        <div className="row-span-3">
+                                            <ListItem
+                                                title={t('technicke_textilie_polnohospodarstvo')}
+                                                href={`/${currentLocale}${getSlug('technicke_textilie_polnohospodarstvo')}`}
+                                                className="mb-2 font-bold bg-accent/50"
+                                            />
+                                            <ul className="pl-4 space-y-2 border-l-2 border-muted ml-2">
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('technicke_textilie_polnohospodarstvo')}/ochranne-sietoviny`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('technicke_textilie_polnohospodarstvo_ochranne_sietoviny')}
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${currentLocale}${getSlug('technicke_textilie_polnohospodarstvo')}/foliovnikova-folia`} className="text-sm text-muted-foreground hover:text-primary transition-colors block py-1">
+                                                        {t('technicke_textilie_polnohospodarstvo_foliovnikova_folia')}
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                         <ListItem title={t('technicke_textilie_stropne_pohlady')} href={`/${currentLocale}${getSlug('technicke_textilie_stropne_pohlady')}`} />
                                     </ul>
                                 </NavigationMenuContent>

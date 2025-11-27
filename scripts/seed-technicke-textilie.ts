@@ -16,14 +16,40 @@ async function seedTechnickeTextilie() {
     const { default: config } = await import('../payload.config')
     const payload = await getPayload({ config })
 
-    const heroImage = await payload.find({ collection: 'media', limit: 1 })
-    const heroImageId = heroImage.docs[0]?.id
+    const allMedia = await payload.find({ collection: 'media', limit: 100 })
+
+    const findImage = (keywords: string[]) => {
+        const found = allMedia.docs.find(doc => {
+            const text = (doc.alt + ' ' + doc.filename).toLowerCase()
+            return keywords.some(k => text.includes(k.toLowerCase()))
+        })
+        return found?.id || allMedia.docs[0]?.id
+    }
+
+    const findImages = (keywords: string[], count: number = 6) => {
+        const found = allMedia.docs.filter(doc => {
+            const text = (doc.alt + ' ' + doc.filename).toLowerCase()
+            return keywords.some(k => text.includes(k.toLowerCase()))
+        })
+        if (found.length < count) {
+            const remaining = count - found.length
+            const others = allMedia.docs.filter(d => !found.includes(d)).slice(0, remaining)
+            return [...found, ...others].map(doc => doc.id)
+        }
+        return found.slice(0, count).map(doc => doc.id)
+    }
 
     const pages = [
         { key: 'technicke-textilie', sk: 'Technické textílie', en: 'Technical Textiles', de: 'Technische Textilien' },
         { key: 'technicke-textilie/autoplachty', sk: 'Autoplachty', en: 'Car Tarpaulins', de: 'LKW-Planen' },
         { key: 'technicke-textilie/priemysel', sk: 'Pre priemysel', en: 'For Industry', de: 'Für die Industrie' },
+        { key: 'technicke-textilie/priemysel/deliace-steny', sk: 'Deliace steny', en: 'Partition Walls', de: 'Trennwände' },
+        { key: 'technicke-textilie/priemysel/priemyselne-zavesy', sk: 'Priemyselné závesy z PVC plachiet', en: 'Industrial Curtains from PVC Tarpaulins', de: 'Industrievorhänge aus PVC-Planen' },
+        { key: 'technicke-textilie/priemysel/lamelove-zavesy', sk: 'Lamelové PVC závesy', en: 'Strip PVC Curtains', de: 'Streifen-PVC-Vorhänge' },
+        { key: 'technicke-textilie/priemysel/brany', sk: 'Brány z technických textílií', en: 'Gates from Technical Textiles', de: 'Tore aus technischen Textilien' },
         { key: 'technicke-textilie/polnohospodarstvo', sk: 'Pre poľnohospodárstvo', en: 'For Agriculture', de: 'Für die Landwirtschaft' },
+        { key: 'technicke-textilie/polnohospodarstvo/ochranne-sietoviny', sk: 'Ochranné sieťoviny', en: 'Protective Mesh', de: 'Schutznetze' },
+        { key: 'technicke-textilie/polnohospodarstvo/foliovnikova-folia', sk: 'Fóliovníková PP fólia', en: 'Greenhouse PP Foil', de: 'Gewächshaus-PP-Folie' },
         { key: 'technicke-textilie/stropne-pohlady', sk: 'Stropné pohľady', en: 'Ceiling Views', de: 'Deckenansichten' },
     ]
 
@@ -31,24 +57,54 @@ async function seedTechnickeTextilie() {
 
     const descriptions: Record<string, Record<string, string>> = {
         'technicke-textilie': {
-            sk: 'Široká ponuka technických textílií pre rôzne priemyselné odvetvia.',
-            en: 'Wide range of technical textiles for various industries.',
-            de: 'Breites Angebot an technischen Textilien für verschiedene Industriezweige.'
+            sk: 'Zaoberáme sa výrobou technických textílií aj pre priemysel a poľnohospodárstvo, pričom využívame moderné technologické postupy a dlhoročné skúsenosti v oblasti spracovania špeciálnych materiálov. Naše technické riešenia nachádzajú uplatnenie v rôznych odvetviach – od ochrany výrobných hál až po estetické a funkčné úpravy interiérov.',
+            en: 'We are engaged in the production of technical textiles also for industry and agriculture, using modern technological procedures and many years of experience in the field of processing special materials. Our technical solutions find application in various sectors – from the protection of production halls to aesthetic and functional interior modifications.',
+            de: 'Wir beschäftigen uns mit der Herstellung von technischen Textilien auch für Industrie und Landwirtschaft, wobei wir moderne technologische Verfahren und langjährige Erfahrung im Bereich der Verarbeitung von Spezialmaterialien nutzen. Unsere technischen Lösungen finden in verschiedenen Branchen Anwendung – vom Schutz von Produktionshallen bis hin zu ästhetischen und funktionalen Innenraumgestaltungen.'
         },
         'technicke-textilie/autoplachty': {
-            sk: 'Výroba a oprava autoplachiet na mieru pre všetky typy vozidiel.',
-            en: 'Custom manufacturing and repair of car tarpaulins for all types of vehicles.',
-            de: 'Maßgeschneiderte Herstellung und Reparatur von LKW-Planen für alle Fahrzeugtypen.'
+            sk: 'Zabezpečujeme výrobu, montáž, servis aj opravy autoplachiet, vrátane predaja príslušenstva. Používame vysokokvalitné materiály a ponúkame aj potlač reklamy na mieru.',
+            en: 'We provide production, assembly, service and repair of car tarpaulins, including the sale of accessories. We use high-quality materials and also offer custom advertising printing.',
+            de: 'Wir bieten Produktion, Montage, Service und Reparatur von LKW-Planen, einschließlich des Verkaufs von Zubehör. Wir verwenden hochwertige Materialien und bieten auch individuellen Werbedruck an.'
         },
         'technicke-textilie/priemysel': {
-            sk: 'Špeciálne riešenia pre priemyselné haly, predelenia a krycie plachty.',
-            en: 'Special solutions for industrial halls, partitions and cover sheets.',
-            de: 'Spezielle Lösungen für Industriehallen, Trennwände und Abdeckplanen.'
+            sk: 'Technické textílie predstavujú efektívne riešenie pre zlepšenie pracovných procesov v priemysle. Umožňujú úpravu a rozdelenie výrobných plôch, ako aj bezpečné uskladnenie materiálov. Svoje uplatnenie nachádzajú ako halové deliace steny, krycie plachty či ochranné závesy.',
+            en: 'Technical textiles represent an effective solution for improving work processes in industry. They allow the modification and division of production areas, as well as the safe storage of materials. They find their application as hall partition walls, cover sheets or protective curtains.',
+            de: 'Technische Textilien stellen eine effektive Lösung zur Verbesserung von Arbeitsprozessen in der Industrie dar. Sie ermöglichen die Anpassung und Aufteilung von Produktionsflächen sowie die sichere Lagerung von Materialien. Sie finden ihre Anwendung als Hallentrennwände, Abdeckplanen oder Schutzvorhänge.'
         },
         'technicke-textilie/polnohospodarstvo': {
-            sk: 'Krycie plachty pre poľnohospodárske stroje, stohy a silážne jamy.',
-            en: 'Cover sheets for agricultural machinery, stacks and silage pits.',
-            de: 'Abdeckplanen für landwirtschaftliche Maschinen, Stapel und Silagegruben.'
+            sk: 'Ponúkame praktické riešenia z technických textílií, ktoré pomáhajú chrániť úrodu, hospodárske zvieratá aj stroje pred nepriaznivým počasím. Naše textílie sú vhodné aj na prekrytie a rozdelenie priestorov v halách, skladoch alebo maštaliach.',
+            en: 'We offer practical solutions from technical textiles that help protect crops, livestock and machinery from adverse weather. Our textiles are also suitable for covering and dividing spaces in halls, warehouses or stables.',
+            de: 'Wir bieten praktische Lösungen aus technischen Textilien, die helfen, Ernten, Vieh und Maschinen vor widrigem Wetter zu schützen. Unsere Textilien eignen sich auch zum Abdecken und Unterteilen von Räumen in Hallen, Lagern oder Ställen.'
+        },
+        'technicke-textilie/priemysel/deliace-steny': {
+            sk: 'Flexibilné deliace steny pre optimalizáciu priestoru v halách.',
+            en: 'Flexible partition walls for space optimization in halls.',
+            de: 'Flexible Trennwände zur Raumoptimierung in Hallen.'
+        },
+        'technicke-textilie/priemysel/priemyselne-zavesy': {
+            sk: 'Odolné PVC závesy pre oddelenie pracovných zón.',
+            en: 'Durable PVC curtains for separating work zones.',
+            de: 'Langlebige PVC-Vorhänge zur Abtrennung von Arbeitsbereichen.'
+        },
+        'technicke-textilie/priemysel/lamelove-zavesy': {
+            sk: 'Priehľadné lamelové závesy pre prechody a tepelnú izoláciu.',
+            en: 'Transparent strip curtains for passages and thermal insulation.',
+            de: 'Transparente Streifenvorhänge für Durchgänge und Wärmedämmung.'
+        },
+        'technicke-textilie/priemysel/brany': {
+            sk: 'Rýchlobežné a rolovacie brány z technických textílií.',
+            en: 'High-speed and rolling gates made of technical textiles.',
+            de: 'Schnelllauf- und Rolltore aus technischen Textilien.'
+        },
+        'technicke-textilie/polnohospodarstvo/ochranne-sietoviny': {
+            sk: 'Siete proti vetru, vtákom a krupobitiu.',
+            en: 'Nets against wind, birds and hail.',
+            de: 'Netze gegen Wind, Vögel und Hagel.'
+        },
+        'technicke-textilie/polnohospodarstvo/foliovnikova-folia': {
+            sk: 'Kvalitné fólie pre fóliovníky a skleníky s dlhou životnosťou.',
+            en: 'Quality foils for greenhouses with long lifespan.',
+            de: 'Qualitätsfolien für Gewächshäuser mit langer Lebensdauer.'
         },
         'technicke-textilie/stropne-pohlady': {
             sk: 'Estetické a funkčné textilné podhľady pre interiéry.',
@@ -64,27 +120,62 @@ async function seedTechnickeTextilie() {
             let slug = ''
 
             // Recalculate slug for current locale
+            // Recalculate slug for current locale
             if (page.key === 'technicke-textilie') slug = 'technicke-textilie'
-            if (page.key === 'technicke-textilie/autoplachty') slug = 'autoplachty'
-            if (page.key === 'technicke-textilie/priemysel') slug = 'pre-priemysel'
-            if (page.key === 'technicke-textilie/polnohospodarstvo') slug = 'polnohospodarstvo'
-            if (page.key === 'technicke-textilie/stropne-pohlady') slug = 'stropne-pohlady'
+            else if (page.key === 'technicke-textilie/autoplachty') slug = 'autoplachty'
+            else if (page.key === 'technicke-textilie/priemysel') slug = 'pre-priemysel'
+            else if (page.key === 'technicke-textilie/priemysel/deliace-steny') slug = 'deliace-steny'
+            else if (page.key === 'technicke-textilie/priemysel/priemyselne-zavesy') slug = 'priemyselne-zavesy'
+            else if (page.key === 'technicke-textilie/priemysel/lamelove-zavesy') slug = 'lamelove-zavesy'
+            else if (page.key === 'technicke-textilie/priemysel/brany') slug = 'brany'
+            else if (page.key === 'technicke-textilie/polnohospodarstvo') slug = 'polnohospodarstvo'
+            else if (page.key === 'technicke-textilie/polnohospodarstvo/ochranne-sietoviny') slug = 'ochranne-sietoviny'
+            else if (page.key === 'technicke-textilie/polnohospodarstvo/foliovnikova-folia') slug = 'foliovnikova-folia'
+            else if (page.key === 'technicke-textilie/stropne-pohlady') slug = 'stropne-pohlady'
 
             if (locale === 'en') {
                 if (slug === 'technicke-textilie') slug = 'technical-textiles'
-                if (slug === 'autoplachty') slug = 'car-tarpaulins'
-                if (slug === 'pre-priemysel') slug = 'for-industry'
-                if (slug === 'polnohospodarstvo') slug = 'agriculture'
-                if (slug === 'stropne-pohlady') slug = 'ceiling-views'
+                else if (slug === 'autoplachty') slug = 'car-tarpaulins'
+                else if (slug === 'pre-priemysel') slug = 'for-industry'
+                else if (slug === 'deliace-steny') slug = 'partition-walls'
+                else if (slug === 'priemyselne-zavesy') slug = 'industrial-curtains'
+                else if (slug === 'lamelove-zavesy') slug = 'strip-curtains'
+                else if (slug === 'brany') slug = 'gates'
+                else if (slug === 'polnohospodarstvo') slug = 'agriculture'
+                else if (slug === 'ochranne-sietoviny') slug = 'protective-mesh'
+                else if (slug === 'foliovnikova-folia') slug = 'greenhouse-foil'
+                else if (slug === 'stropne-pohlady') slug = 'ceiling-views'
             } else if (locale === 'de') {
                 if (slug === 'technicke-textilie') slug = 'technische-textilien'
-                if (slug === 'autoplachty') slug = 'lkw-planen'
-                if (slug === 'pre-priemysel') slug = 'fuer-industrie'
-                if (slug === 'polnohospodarstvo') slug = 'landwirtschaft'
-                if (slug === 'stropne-pohlady') slug = 'deckenansichten'
+                else if (slug === 'autoplachty') slug = 'lkw-planen'
+                else if (slug === 'pre-priemysel') slug = 'fuer-industrie'
+                else if (slug === 'deliace-steny') slug = 'trennwaende'
+                else if (slug === 'priemyselne-zavesy') slug = 'industrievorhaenge'
+                else if (slug === 'lamelove-zavesy') slug = 'streifenvorhaenge'
+                else if (slug === 'brany') slug = 'tore'
+                else if (slug === 'polnohospodarstvo') slug = 'landwirtschaft'
+                else if (slug === 'ochranne-sietoviny') slug = 'schutznetze'
+                else if (slug === 'foliovnikova-folia') slug = 'gewaechshausfolie'
+                else if (slug === 'stropne-pohlady') slug = 'deckenansichten'
             }
 
             const description = descriptions[page.key]?.[locale] || `Content for ${title}`
+
+            let imageKeywords: string[] = []
+            if (page.key === 'technicke-textilie') imageKeywords = ['textil', 'textile']
+            if (page.key === 'technicke-textilie/autoplachty') imageKeywords = ['autoplachty', 'tarpaulin', 'kamion']
+            if (page.key === 'technicke-textilie/priemysel') imageKeywords = ['priemysel', 'industry', 'hala']
+            if (page.key === 'technicke-textilie/priemysel/deliace-steny') imageKeywords = ['stena', 'wall', 'partition']
+            if (page.key === 'technicke-textilie/priemysel/priemyselne-zavesy') imageKeywords = ['zaves', 'curtain', 'pvc']
+            if (page.key === 'technicke-textilie/priemysel/lamelove-zavesy') imageKeywords = ['lamely', 'strip', 'curtain']
+            if (page.key === 'technicke-textilie/priemysel/brany') imageKeywords = ['brana', 'gate', 'door']
+            if (page.key === 'technicke-textilie/polnohospodarstvo') imageKeywords = ['polnohospodarstvo', 'agriculture', 'traktor']
+            if (page.key === 'technicke-textilie/polnohospodarstvo/ochranne-sietoviny') imageKeywords = ['siet', 'mesh', 'net']
+            if (page.key === 'technicke-textilie/polnohospodarstvo/foliovnikova-folia') imageKeywords = ['folia', 'greenhouse', 'foil']
+            if (page.key === 'technicke-textilie/stropne-pohlady') imageKeywords = ['strop', 'ceiling']
+
+            const pageImageId = findImage(imageKeywords)
+            const galleryImages = findImages(imageKeywords, 6)
 
             const pageData: any = {
                 title: title,
@@ -95,10 +186,9 @@ async function seedTechnickeTextilie() {
                     {
                         blockType: 'hero',
                         title: title,
-                        subtitle: `${title} - Quality Textiles`,
+                        subtitle: description,
                         type: 'default',
-                        backgroundImage: heroImageId || null,
-                        showSearch: false,
+                        backgroundImage: pageImageId ? { id: pageImageId } : null,
                     },
                     {
                         blockType: 'content',
@@ -111,22 +201,59 @@ async function seedTechnickeTextilie() {
                                         children: [
                                             {
                                                 type: 'text',
+                                                detail: 0,
+                                                format: 0,
+                                                mode: 'normal',
+                                                style: '',
                                                 text: description,
                                                 version: 1,
-                                            },
+                                            }
                                         ],
                                         direction: 'ltr',
                                         format: '',
                                         indent: 0,
+                                        textFormat: 0,
                                         version: 1,
-                                    },
+                                    }
                                 ],
                                 direction: 'ltr',
                                 format: '',
                                 indent: 0,
                                 version: 1,
                             }
-                        },
+                        }
+                    },
+                    {
+                        blockType: 'features',
+                        title: locale === 'sk' ? 'Vlastnosti' : (locale === 'en' ? 'Features' : 'Eigenschaften'),
+                        items: [
+                            { title: locale === 'sk' ? 'Odolnosť' : (locale === 'en' ? 'Durability' : 'Haltbarkeit'), text: locale === 'sk' ? 'Odolné voči poveternostným vplyvom.' : (locale === 'en' ? 'Resistant to weather conditions.' : 'Wetterbeständig.'), icon: 'shield' },
+                            { title: locale === 'sk' ? 'Flexibilita' : (locale === 'en' ? 'Flexibility' : 'Flexibilität'), text: locale === 'sk' ? 'Prispôsobíme sa vašim potrebám.' : (locale === 'en' ? 'We adapt to your needs.' : 'Wir passen uns Ihren Bedürfnissen an.'), icon: 'zap' },
+                            { title: locale === 'sk' ? 'Dlhá životnosť' : (locale === 'en' ? 'Long Life' : 'Lange Lebensdauer'), text: locale === 'sk' ? 'Materiály s dlhou životnosťou.' : (locale === 'en' ? 'Long-lasting materials.' : 'Langlebige Materialien.'), icon: 'star' },
+                        ]
+                    },
+                    {
+                        blockType: 'cardGrid',
+                        title: locale === 'sk' ? 'Kategórie' : (locale === 'en' ? 'Categories' : 'Kategorien'),
+                        cards: [
+                            { title: 'Autoplachty', description: locale === 'sk' ? 'Pre všetky typy vozidiel' : 'For all vehicle types', link: `/${locale}/technicke-textilie/autoplachty` },
+                            { title: 'Priemysel', description: locale === 'sk' ? 'Deliace steny a závesy' : 'Partition walls and curtains', link: `/${locale}/technicke-textilie/priemysel` },
+                            { title: 'Poľnohospodárstvo', description: locale === 'sk' ? 'Ochranné siete a plachty' : 'Protective nets and sheets', link: `/${locale}/technicke-textilie/polnohospodarstvo` },
+                        ]
+                    },
+                    {
+                        blockType: 'accordion',
+                        title: 'FAQ',
+                        items: [
+                            { trigger: locale === 'sk' ? 'Aká je životnosť materiálov?' : 'What is the lifespan of materials?', content: locale === 'sk' ? 'Životnosť závisí od typu materiálu a použitia, zvyčajne 5-10 rokov.' : 'Lifespan depends on material type and usage, usually 5-10 years.' },
+                            { trigger: locale === 'sk' ? 'Robíte aj montáž?' : 'Do you also do installation?', content: locale === 'sk' ? 'Áno, zabezpečujeme kompletnú montáž.' : 'Yes, we provide complete installation.' },
+                        ]
+                    },
+                    {
+                        blockType: 'gallery',
+                        title: locale === 'sk' ? 'Ukážky realizácií' : (locale === 'en' ? 'Project Examples' : 'Projektbeispiele'),
+                        columns: '3',
+                        images: galleryImages.map(id => ({ id })),
                     },
                 ],
             }

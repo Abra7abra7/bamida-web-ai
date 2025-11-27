@@ -58,6 +58,7 @@ async function seedContact() {
             title: title,
             slug: slug,
             locale: locale,
+            translationKey: 'contact',
             layout: [
                 {
                     blockType: 'hero',
@@ -123,6 +124,35 @@ async function seedContact() {
                             version: 1,
                         }
                     },
+                },
+                {
+                    blockType: 'contact',
+                    title: locale === 'sk' ? 'Napíšte nám' : (locale === 'en' ? 'Write to us' : 'Schreiben Sie uns'),
+                    introText: {
+                        root: {
+                            type: 'root',
+                            children: [
+                                {
+                                    type: 'paragraph',
+                                    children: [
+                                        {
+                                            type: 'text',
+                                            text: locale === 'sk' ? 'Máte otázky? Vyplňte formulár nižšie a my sa vám ozveme.' : (locale === 'en' ? 'Do you have questions? Fill out the form below and we will get back to you.' : 'Haben Sie Fragen? Füllen Sie das untenstehende Formular aus und wir werden uns bei Ihnen melden.'),
+                                            version: 1,
+                                        },
+                                    ],
+                                    direction: 'ltr',
+                                    format: '',
+                                    indent: 0,
+                                    version: 1,
+                                },
+                            ],
+                            direction: 'ltr',
+                            format: '',
+                            indent: 0,
+                            version: 1,
+                        }
+                    }
                 },
                 {
                     blockType: 'cta',

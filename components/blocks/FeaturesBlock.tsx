@@ -1,5 +1,5 @@
 import { Star, Shield, Zap, Heart, Check, Trophy } from 'lucide-react'
-import { cn } from '@/lib/utils'
+
 
 interface FeaturesBlockProps {
     title?: string | null

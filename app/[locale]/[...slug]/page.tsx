@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import type { Metadata } from 'next'
@@ -120,6 +121,7 @@ export default async function Page({ params }: Props) {
                 {/* Featured Image */}
                 {page.featuredImage && typeof page.featuredImage === 'object' && 'url' in page.featuredImage && (
                     <div className="mb-12 max-w-5xl mx-auto">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             src={page.featuredImage.url || ''}
                             alt={page.featuredImage.alt || page.title}
